@@ -1,17 +1,79 @@
-#sidebar{
-    display: flex;
-    min-height: 100vh;
-    min-width: 15%;
-    max-width: 15%;
-}
-
-#sidebar.active{
-    margin-left: -15%;
+body {
+    font-family: 'Muli', sans-serif;
 }
 
 .bg-custom{
-    background-color: #68ab77;
+    background-image: linear-gradient(180deg, #68ab77, #68ab77, #68ab77, #fafad2);
+    color: #ffffff;
 }
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar {
+    width: 6.5rem;
+    min-height: 100vh;
+}
+
+.sidebar .nav-item {
+    position: relative;
+}
+
+.sidebar .nav-item .nav-link {
+    text-align: center;
+    padding: 1rem 0.75rem;
+    width: 6.5rem;
+}
+
+.sidebar .nav-item .nav-link span {
+    font-size: 1rem;
+    display: block;
+  }
+
+.sidebar .nav-item.active .nav-link {
+    font-weight: 700;
+  }
+
+.sidebar-list{
+    list-style-type: none;
+}
+
+/*style for sidebar Toggle button*/
+.sidebarToggle {
+text-align: center;
+}
+
+.sidebar.toggled {
+    width: 0 !important;
+    overflow: hidden;
+  }
+  
+  .sidebar.toggled .nav-item .nav-link {
+    text-align: center;
+    padding: 1.2rem 0.75rem;
+    width: 6.5rem;
+  }
+
+  .sidebar.toggled .nav-item .nav-link span {
+    font-size: 0.8rem;
+    display: block;
+  }
+  .sidebar.toggled .nav-item .nav-link i {
+    margin-right: 0;
+  }
+  
+
+  }
+  .sidebar.toggled .sidebar-brand .sidebar-brand-icon i {
+    font-size: 2rem;
+  }
+  .sidebar.toggled .sidebar-brand .sidebar-brand-text {
+    display: none;
+  }
+  
 
 .filter-verdi{
     filter: invert(63%) sepia(13%) saturate(1119%) hue-rotate(81deg) brightness(94%) contrast(87%);
