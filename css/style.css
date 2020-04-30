@@ -1,3 +1,13 @@
-#main{
-    background: radial-gradient(#fcfcfa 0%, #e7e2cf 40%);
+.sidebar{
+    min-height: 100%;
+}
+.bg-custom{
+    background-color: #68ab77;
+}
+
+.navbar-nav{
+    display: flex;
+}
+.filter-verdi{
+    filter: invert(63%) sepia(13%) saturate(1119%) hue-rotate(81deg) brightness(94%) contrast(87%);
 }
