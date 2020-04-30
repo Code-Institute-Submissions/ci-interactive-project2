@@ -1,13 +1,18 @@
-.sidebar{
-    min-height: 100%;
+#sidebar{
+    display: flex;
+    min-height: 100vh;
+    min-width: 15%;
+    max-width: 15%;
 }
+
+#sidebar.active{
+    margin-left: -15%;
+}
+
 .bg-custom{
     background-color: #68ab77;
 }
 
-.navbar-nav{
-    display: flex;
-}
 .filter-verdi{
     filter: invert(63%) sepia(13%) saturate(1119%) hue-rotate(81deg) brightness(94%) contrast(87%);
 }
