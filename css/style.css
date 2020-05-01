@@ -7,6 +7,11 @@ body {
     color: #ffffff;
 }
 
+.card-footer{
+    font-size: 0.65rem;
+    padding: 0rem;
+    margin-bottom: 0.5rem;
+}
 
 .card-img{
     border-radius: 2rem;
@@ -19,8 +24,42 @@ body {
     font-size: 1.5rem;
 }
 
+.card-kf-body{
+    padding : 0rem;
+}
+
+.card-text{
+    padding: 0rem;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-title{
+    font-family: 'Pridi', sans-serif;
+    font-size: 1.75rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+}
 .custom-card-cols{
     align-self:center;
+    border:1px solid #e3e6f0;
+    border-radius: 1rem;
+    box-shadow: 0.05rem 0.1rem 0.2rem grey;
+}
+
+/*.custom-card-img{
+    align-self: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #dddfeb;
+}*/
+
+.custom-kf-box{
+    align-self: center;
+}
+
+.custom-kf-rows{
+    justify-content: space-evenly;
 }
 
 a, a:hover, a:focus {
@@ -36,6 +75,8 @@ a, a:hover, a:focus {
     margin-bottom: 0;
     list-style: none;
   }
+
+
 
 .sidebar {
     width: 6.5rem;
@@ -166,6 +207,10 @@ a, a:hover, a:focus {
         display: none;
       }
 
+}
+
+.filter-red{
+    filter: invert(52%) sepia(13%) saturate(1593%) hue-rotate(314deg) brightness(86%) contrast(72%);
 }
 
 .filter-verdi{
