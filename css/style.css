@@ -7,6 +7,22 @@ body {
     color: #ffffff;
 }
 
+
+.card-img{
+    border-radius: 2rem;
+}
+
+.card-header-1{
+    color: #68ab77;
+    margin-left: 5px;
+    font-family: 'Pridi', sans-serif;
+    font-size: 1.5rem;
+}
+
+.custom-card-cols{
+    align-self:center;
+}
+
 a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
@@ -24,6 +40,8 @@ a, a:hover, a:focus {
 .sidebar {
     width: 6.5rem;
     min-height: 100vh;
+    transition: width 0.3s;
+    transition-timing-function: ease-in-out;
 }
 
 .sidebar .nav-item {
@@ -91,6 +109,8 @@ a, a:hover, a:focus {
 @media (min-width: 768px) {
     .sidebar {
         width: 10rem !important;
+        transition: width 0.3s;
+        transition-timing-function: ease-in-out;
     }
     .sidebar .nav-item .nav-link {
         display: block;
