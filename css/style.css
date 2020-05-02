@@ -15,6 +15,7 @@ body {
 
 .card-img{
     border-radius: 2rem;
+    width: 40%;
 }
 
 .card-header-1{
@@ -148,6 +149,10 @@ a, a:hover, a:focus {
 }
   
 @media (min-width: 768px) {
+    .card-img{
+        width: 100%;
+    }
+
     .sidebar {
         width: 10rem !important;
         transition: width 0.3s;

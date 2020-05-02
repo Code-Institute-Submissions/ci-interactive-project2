@@ -52,7 +52,7 @@
 
   
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#">
+          <a class="nav-link collapsed" href="#" data-toggle="modal" data-target="#formModal">
             <i class="fas fa-edit"></i>
             <span>Form</span>
           </a>
@@ -135,11 +135,12 @@
                     <div class="row card-header-1">
                         <span>Key Findings:</span>
                     </div>
-                    <div class="row custom-kf-rows">
+                  <!--  <div class="row custom-kf-rows">-->
+                        <div class="card-deck">
                         <div class="col-md-5 card mb-4 custom-card-cols">
-                                <div class="row no-gutters">
-                                    <div class="col-md-2 d-flex card-img">
-                                        <img src="image/up_arrow1.svg" class="card-img filter-red" alt=""/>
+                            <div class="row no-gutters">
+                                    <div class="col-md-2 card-img">
+                                        <img src="image/up_arrow.svg" class="card-img filter-red" alt=""/>
                                       </div>
                                   <div class="col-md-10">
                                     <div class="card-body card-kf-body">
@@ -148,13 +149,13 @@
                                       <p class="card-footer">Average monthly income rose 2.4% per year in nominal terms.</p>
                                     </div>
                                   </div>            
-                                </div>
+                        </div>
                         </div>
 
                         <div class="col-md-5 card mb-4 custom-card-cols">
                             <div class="row no-gutters">
-                                <div class="col-md-2 d-flex card-img">
-                                    <img src="image/up_arrow1.svg" class="card-img filter-red" alt=""/>
+                                <div class="col-md-2 card-img">
+                                    <img src="image/up_arrow.svg" class="card-img filter-red" alt=""/>
                                 </div>
                                 <div class="col-md-10">
                                     <div class="card-body card-kf-body">
@@ -163,9 +164,11 @@
                                       <p class="card-footer">Household expenditure on goods and services increased 0.8% per year.</p>
                                     </div>
                                   </div> 
+                                </div>    
                             </div>
-                        </div>
-                    </div>
+                        
+                      </div> 
+               <!--     </div>--> 
 
                     <div class="row custom-kf-rows">
                         <div class="col-md-5 mb-4 custom-card-cols">
@@ -203,6 +206,69 @@
     </div>    <!-- end of content-wrapper -->
 </div> <!--end entire container-->
 
+<!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formModalLabel">User Expenditure Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+            <label for="userIncome">Please enter your income quintile:</label>
+            <select name="userIncome">
+              <option value="First">First Quintile</option>
+              <option value="Second" selected>Second Quintile</option>
+              <option value="Third">Third Quintile</option>
+              <option value="Fourth">Fourth Quintile</option>
+              <option value="Fifth">Fifth Quintile</option>
+            </select>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="foodBeverage">Food and Non-Alcoholic Beverages:</label><br>
+                    <input type="number" id="foodBeverage" name="foodBeverage"><br><br>
+                    <label for="alcoholTobacco">Alcoholic Beverages and Tobacco:</label><br>
+                    <input type="number" id="alcoholTobacco" name="alcoholTobacco"><br><br>
+                    <label for="clothingFootwear">Clothing and Footwear:</label><br>
+                    <input type="number" id="clothingFootwear" name="clothingFootwear"><br><br>
+                    <label for="housingUtils">Housing and Utilities:</label><br>
+                    <input type="number" id="housingUtils" name="housingUtils"><br><br>
+                    <label for="furnishing">Furnishing, Household Equiptment and Regular Maintenance:</label><br>
+                    <input type="number" id="furnishing" name="furnishing"><br><br>
+                    <label for="health">Health:</label><br>
+                    <input type="number" id="health" name="health"><br><br>
+                    <label for="transport">Transport:</label><br>
+                    <input type="number" id="transport" name="transport"><br><br>
+                </div>
+                <div class="col-md-6">
+                    <label for="communication">Communication:</label><br>
+                    <input type="number" id="communication" name="communication"><br><br>
+                    <label for="recreationCulture">Recreation and Culture:</label><br>
+                    <input type="number" id="recreationCulture" name="recreationCulture"><br><br>
+                    <label for="education">Educational Services:</label><br>
+                    <input type="number" id="education" name="education"><br><br>
+                    <label for="foodServices">Food Serving Services:</label><br>
+                    <input type="number" id="foodServices" name="foodServices"><br><br>
+                    <label for="accomodation">Accomodation Services:</label><br>
+                    <input type="number" id="accomodation" name="accomodation"><br><br>
+                    <label for="misc">Misc Goods and Services:</label><br>
+                    <input type="number" id="misc" name="misc"><br><br>
+                    <label for="naExpenditure">Non-Assignable Expenditure:</label><br>
+                    <input type="number" id="naExpenditure" name="naExpenditure"><br><br>
+                </div>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Submit</button>
+        </div>
+      </div>    <!--closes modal body-->
+    </div>      <!--closes modal content-->
+  </div>        <!--closes modal dialog-->
+</div>          <!--closes modal wrapper-->
 
   <!-- Optional JavaScript -->
     <!-- Boostrap CDN with jQuery first, then Popper.js, then Bootstrap JS -->
