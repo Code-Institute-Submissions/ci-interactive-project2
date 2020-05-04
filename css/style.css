@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5{
+    font-family: 'Pridi', serif;
+}
+
 body {
     font-family: 'Muli', sans-serif;
 }
@@ -15,11 +19,15 @@ body {
 
 .card-img{
     border-radius: 2rem;
-    width: 40%;
+    width: 20%;
+    align-self: center;
 }
 
-.card-header-1{
-    color: #68ab77;
+.card-main{
+    width: 100%;
+}
+
+.multi-cards-header{
     margin-left: 5px;
     font-family: 'Pridi', sans-serif;
     font-size: 1.5rem;
@@ -36,24 +44,27 @@ body {
 }
 
 .card-title{
-    font-family: 'Pridi', sans-serif;
     font-size: 1.75rem;
     margin-top: 0.5rem;
     margin-bottom: 0.25rem;
 }
+
 .custom-card-cols{
     align-self:center;
-    border:1px solid #e3e6f0;
     border-radius: 1rem;
     box-shadow: 0.05rem 0.1rem 0.2rem grey;
 }
 
-/*.custom-card-img{
-    align-self: center;
-    justify-content: center;
-    font-size: 3rem;
-    color: #dddfeb;
-}*/
+.custom-card-cols .custom-card-header{
+    background-image: linear-gradient(90deg, #68ab77, #68ab77, #68ab77, #fafad2);
+    color: #ffffff;
+    border-top-left-radius: 1rem;
+}
+
+.custom-form-header{
+    background-image: linear-gradient(90deg, #68ab77, #68ab77, #68ab77, #fafad2);
+    color: #ffffff;
+}
 
 .custom-kf-box{
     align-self: center;
@@ -68,6 +79,11 @@ a, a:hover, a:focus {
     text-decoration: none;
     transition: all 0.3s;
 }
+
+.highlight-green{
+    color: #68ab77;
+}
+
 
 .navbar-nav {
     display: flex;
@@ -151,6 +167,7 @@ a, a:hover, a:focus {
 @media (min-width: 768px) {
     .card-img{
         width: 100%;
+        align-self: center;
     }
 
     .sidebar {
@@ -220,4 +237,14 @@ a, a:hover, a:focus {
 
 .filter-verdi{
     filter: invert(63%) sepia(13%) saturate(1119%) hue-rotate(81deg) brightness(94%) contrast(87%);
+}
+
+table{
+    color: #858796;
+}
+th{
+    padding-right: 20px;
+}
+thead{
+    border-bottom: double #858796 5px;
 }

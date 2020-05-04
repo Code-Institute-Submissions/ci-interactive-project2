@@ -128,11 +128,11 @@
             <!--Image and Survey Stats-->
             <div class="row justify-content-center">
                 <div class="col-md-4 mb-4">
-                    <img src="image/family.jpg" class="card-img" alt="...">
+                    <img src="image/family.jpg" class="card-img card-main" alt="...">
                 </div>
                 <div class="col-md-7 custom-kf-box">
                     <!--Key Findings Row-->
-                    <div class="row card-header-1">
+                    <div class="row multi-cards-header">
                         <span>Key Findings:</span>
                     </div>
                   <!--  <div class="row custom-kf-rows">-->
@@ -140,11 +140,11 @@
                         <div class="col-md-5 card mb-4 custom-card-cols">
                             <div class="row no-gutters">
                                     <div class="col-md-2 card-img">
-                                        <img src="image/up_arrow.svg" class="card-img filter-red" alt=""/>
+                                        <img src="image/up_arrow.svg" class="filter-red" alt=""/>
                                       </div>
                                   <div class="col-md-10">
                                     <div class="card-body card-kf-body">
-                                      <h5 class="card-title">2.4%</h5>
+                                      <h5 class="card-title highlight-green">2.4%</h5>
                                       <p class="card-text">Income</p>
                                       <p class="card-footer">Average monthly income rose 2.4% per year in nominal terms.</p>
                                     </div>
@@ -155,11 +155,11 @@
                         <div class="col-md-5 card mb-4 custom-card-cols">
                             <div class="row no-gutters">
                                 <div class="col-md-2 card-img">
-                                    <img src="image/up_arrow.svg" class="card-img filter-red" alt=""/>
+                                    <img src="image/up_arrow.svg" class="filter-red" alt=""/>
                                 </div>
                                 <div class="col-md-10">
                                     <div class="card-body card-kf-body">
-                                      <h5 class="card-title">0.8%</h5>
+                                      <h5 class="card-title highlight-green">0.8%</h5>
                                       <p class="card-text">Expenditure</p>
                                       <p class="card-footer">Household expenditure on goods and services increased 0.8% per year.</p>
                                     </div>
@@ -184,10 +184,10 @@
             
 
             <!--Survey Details Row-->
-            <div class="row card-header-1">
+            <div class="row multi-cards-header">
                 <span>Survey Methods:</span>
             </div>
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col-md-3 custom-card-rows">
                     <img src="http://placehold.it/400x200" class="card-img" alt="...">
                 </div>
@@ -202,6 +202,28 @@
                 </div>
              </div> 
   
+             <!--Table-->
+             <div class="row">
+               <div class="col-md-5">
+                <div class="card border custom-card-cols">
+                 <div class="card-header custom-card-header">
+                   <h3 class="card-title"> Monthly Household Income vs Household Expenditure</h3>
+                 </div>
+                 <div class="card-body" id="table">
+
+                 </div>
+               </div>
+             </div>
+
+             <div class="col-md-7">
+
+             </div>
+
+              <!--Charts -->
+              <div class="row">
+
+              </div>
+
             </div>  <!--end of content-->
     </div>    <!-- end of content-wrapper -->
 </div> <!--end entire container-->
@@ -210,7 +232,7 @@
 <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header custom-form-header">
           <h5 class="modal-title" id="formModalLabel">User Expenditure Form</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -218,7 +240,7 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-            <label for="userIncome">Please enter your income quintile:</label>
+            <label for="userIncome">From the table, please enter your income quintile:</label>
             <select name="userIncome">
               <option value="First">First Quintile</option>
               <option value="Second" selected>Second Quintile</option>
@@ -275,7 +297,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!--D3 script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.16.0/d3.js"></script>
     <!--local script-->
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
