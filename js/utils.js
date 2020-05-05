@@ -1,6 +1,10 @@
 let anObject;
 let testObj;
 
+const toolTip= d3.select("#bar-chart").append("div")	
+                   .attr("id", "tooltip")				
+                   .style("opacity", 0);
+
 function storageAvailable(type) {
     var storage;
     try {
@@ -49,4 +53,34 @@ function storageAvailable(type) {
     function capitalizeFirstLetter(myString){
       myString = myString.replace(/\b(\w)/g ,function(w){return w.toUpperCase()});
       return myString;
+  }
+
+  function handleMouseOver(d, i) {  // Add interactivity
+
+    d3.select(this)
+      .transition()
+      .style("fill","#fffccc")
+      .duration(300);
+
+      let x = d3.event.pageX - $("#bar-chart")[0].getBoundingClientRect().left;
+      let y = d3.event.pageY - $("#bar-chart")[0].getBoundingClientRect().bottom;
+      
+      //console.log($('#bar-chart')[0].getBoundingClientRect().top);        
+
+toolTip.style("opacity",1)
+      .style("left",  x + "px")		
+      .style("top",  y + "px")        
+      .html(d.key + "<br>" + '$'+d.value)
+      .attr("data-type",d.key);
+
+  }
+
+  function handleMouseOut(d, i) {  
+
+    d3.select(this)
+      .transition()
+      .style("fill",function(d) {
+      return d.color;})
+      .duration(300);
+      toolTip.style("opacity",0);
   }

@@ -164,8 +164,11 @@ $(function(){
           .attr("y", function(d) { return yScale(d.value); })
           .attr("width", x1.bandwidth())
           .attr("height", function(d) { return barHeight - yScale(d.value); })
-          .attr("fill", function(d) { return chartColor(d.key); });
-
+          .attr("fill", function(d) { return chartColor(d.key); })
+          .on("mouseover", handleMouseOver)
+          .on("mouseout", handleMouseOut);
+          
+          
     
    
 }); //end jQuery document ready
