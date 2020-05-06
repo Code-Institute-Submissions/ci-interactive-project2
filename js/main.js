@@ -5,17 +5,7 @@ $(function(){
         $('.sidebar').toggleClass('toggled');
     });
 
-    var testsettings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://hargrimm-wikihow-v1.p.rapidapi.com/steps?count=8",
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "hargrimm-wikihow-v1.p.rapidapi.com",
-            "x-rapidapi-key": "08e25a2d22msh18e5c671301df4ep1cb04ejsn9e528417a0b4"
-        }
-    }
-
+    //API settings
     var settings1 = {
         "async": true,
         "crossDomain": true,
@@ -28,62 +18,54 @@ $(function(){
         }
       }
 
+      var settings2 = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://sghouseholdexp17-9d5c.restdb.io/rest/hes-table16a",
+        "method": "GET",
+        "headers": {
+          "content-type": "application/json",
+          "x-apikey": "5ea6e1fa96bed7493503627c",
+          "cache-control": "no-cache"
+        }
+      }
+
     //variables for table
     let tableData;
     let tableHeader=[];
 
+    //variables for row/pie chart
+    let expData;
+
+
+
     if (storageAvailable('localStorage')) {
-        // localStorage is available
-         getJSON('localStorage',settings1,'income-exp');
-         tableData = anObject;
-        }
-        else {
+        // localStorage is availables
+        let doFirst = getData('localStorage','tableData',settings1);
+        let doSecond = getData('localStorage','expData',settings2);
+        
+        $.when(doFirst,doSecond).done(function ( data1, data2 ) {
+            tableData=data1;    // "5 objs"
+            expData=data2;      // "54 objs"
+        });
+        
+        } else {
         // Try to use session storage
         console.log("LocalStorage Unavailable");
-        getJSON('sessionStorage',settings1,'income-exp');
+        let doFirst = getData('sessionStorage','tableData',settings1);
+        let doSecond = getData('sessionStorage','expData',settings2);
+        
+        $.when(doFirst,doSecond).done(function ( data1, data2 ) {
+            tableData=data1;    // "5 objs"
+            expData=data2;      // "54 objs"
+        });
+ 
         }
 
-        tableHeader=Object.keys(tableData[0]).splice(1,3);
-        tableHeader.forEach(function(d,i){
-            d = capitalizeFirstLetter(d);
-            tableHeader.splice(i,1,d);
-        })
+    
+   pushToTable(tableData);
 
-    //start pushing to table
-    let table = d3.select('#table')
-                  .append("table")
-                  .attr('class','table-striped');
-
-    //append header row <th>
-    let thead = table.append('thead')
-                     .selectAll('th')
-                     .data(tableHeader)
-                     .enter()
-                     .append('th')
-                     .text(function(d){
-                        let pat = /^Average/
-                        if(pat.test(d)){
-                        d= `${d} S$`;
-                        }
-                        return d;
-                    });
-
-    let trow = table.append('tbody')
-                    .selectAll('tr')
-                    .data(tableData)
-                    .enter()
-                    .append('tr');
-   
-    let cells = trow.selectAll('td')
-                    .data(function(d){
-                     return (Object.values(d).splice(1,3));
-                    })
-                    .enter()
-                    .append('td')
-                    .text(function(d){
-                        return d;
-                    })   
-   
+   //debugger
 
    let barMargin = {top: 8, right: 30, bottom: 30, left: 50};
    let barWidth = $("#bar-chart").width()-barMargin.right-barMargin.left;

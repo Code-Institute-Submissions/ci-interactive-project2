@@ -1,4 +1,3 @@
-let anObject;
 let testObj;
 
 const toolTip= d3.select("#bar-chart").append("div")	
@@ -30,30 +29,81 @@ function storageAvailable(type) {
     }
   }
 
-  function getJSON(type,settings,keyname) {
-    var storage = window[type];
-    
+function getFromStorage(storage,keyname){
       if (storage.getItem(keyname)) {
         console.log('Getting from Storage instead');
         testObj=storage.getItem(keyname);   
-        anObject = jQuery.parseJSON(storage.getItem(keyname));                             //get direct item
-    
-      } else {
-        console.log('No results locally, making API request...');
-        
-      $.ajax(settings).done(function (response) {
-        console.log(response);   
-        var json = JSON.stringify(response);
-        console.log('Setting to Storage with key:', keyname);
-        storage.setItem(keyname, json);
-        });
-      }
-    }
-
-    function capitalizeFirstLetter(myString){
-      myString = myString.replace(/\b(\w)/g ,function(w){return w.toUpperCase()});
-      return myString;
+        return jQuery.parseJSON(storage.getItem(keyname));  
   }
+}
+
+function makeAPIcall(storage,settings,keyname){
+    return $.ajax(settings).then(function(response){
+      console.log('Making API call ...');
+      let json = JSON.stringify(response);
+      storage.setItem(keyname,json);
+      return response;
+  });                       
+}
+
+function getData(type, keyname, settings){
+    let storage = window[type];
+    // Create a Deferred
+    let defer = $.Deferred();
+    var someData  = getFromStorage(storage,keyname);
+    if (someData) {
+      console.log("Found in Storage");
+      return defer.resolve(someData).promise();
+    } else {
+      return makeAPIcall(storage,settings,keyname);    
+  }
+}
+
+
+
+function capitalizeFirstLetter(myString){
+    myString = myString.replace(/\b(\w)/g ,function(w){return w.toUpperCase()});
+    return myString;
+}
+
+  function pushToTable(tableData){
+    tableHeader=Object.keys(tableData[0]).splice(1,3);
+
+//start pushing to table
+let table = d3.select('#table')
+              .append("table")
+              .attr('class','table-striped');
+
+//append header row <th>
+let thead = table.append('thead')
+                 .selectAll('th')
+                 .data(tableHeader)
+                 .enter()
+                 .append('th')
+                 .text(function(d){
+                    let pat = /^Average/
+                    if(pat.test(d)){
+                    d= `${d} S$`;
+                    }
+                    return d;
+                });
+
+let trow = table.append('tbody')
+                .selectAll('tr')
+                .data(tableData)
+                .enter()
+                .append('tr');
+
+let cells = trow.selectAll('td')
+                .data(function(d){
+                 return (Object.values(d).splice(1,3));
+                })
+                .enter()
+                .append('td')
+                .text(function(d){
+                    return d;
+                })   
+}
 
   function handleMouseOver(d, i) {  // Add interactivity
 
