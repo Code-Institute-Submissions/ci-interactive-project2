@@ -71,6 +71,12 @@ body {
     font-size: 1.5rem;
 }
 
+.custom-card-rows{
+    align-self:center;
+    border-radius: 1rem;
+    box-shadow: 0.05rem 0.1rem 0.2rem grey;
+}
+
 .custom-form-header{
     background-image: linear-gradient(90deg, #68ab77, #68ab77, #68ab77, #fafad2);
     color: #ffffff;
@@ -100,6 +106,12 @@ a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s;
+}
+
+.form-footer{
+    font-size: 0.65rem;
+    padding: 0rem;
+    margin-bottom: 0.5rem;
 }
 
 .highlight-green{

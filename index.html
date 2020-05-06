@@ -149,7 +149,7 @@
                                       <p class="card-footer">Average monthly income rose 2.4% per year in nominal terms.</p>
                                     </div>
                                   </div>            
-                        </div>
+                          </div>
                         </div>
 
                         <div class="col-md-5 card mb-4 custom-card-cols">
@@ -165,40 +165,73 @@
                                     </div>
                                   </div> 
                                 </div>    
-                            </div>
-                        
+                              </div>   
                       </div> 
-               <!--     </div>--> 
+                
+                <div class="card-deck">
+                        <div class="col-md-5 card mb-4 custom-card-cols">
+                          <div class="row no-gutters">
+                            <div class="col-md-2 card-img">
+                                <img src="image/up_arrow.svg" class="filter-red" alt=""/>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="card-body card-kf-body">
+                                  <h5 class="card-title highlight-green">96-98%</h5>
+                                  <p class="card-text">Consumer Durables</p>
+                                  <p class="card-footer">TV, washing machines and mobile phones ownership was near universal levels.</p>
+                                </div>
+                              </div> 
+                            </div> 
+                        </div>
 
-                    <div class="row custom-kf-rows">
-                        <div class="col-md-5 mb-4 custom-card-cols">
-                            <img src="http://placehold.it/400x200" class="card-img" alt="...">
+                        <div class="col-md-5 card mb-4 custom-card-cols">
+                          <div class="row no-gutters">
+                            <div class="col-md-2 card-img">
+                                <img src="image/up_arrow.svg" class="filter-red" alt=""/>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="card-body card-kf-body">
+                                  <h5 class="card-title highlight-green">$810</h5>
+                                  <p class="card-text">Food Serving Services</p>
+                                  <p class="card-footer">Average monthly spending on food serving services increased to $810 from $760.</p>
+                                </div>
+                              </div> 
+                            </div> 
                         </div>
-                        <div class="col-md-5 mb-4 custom-card-cols">
-                            <img src="http://placehold.it/400x200" class="card-img" alt="...">
-                        </div>
-                    </div>
-                    
-                    </div> <!--end key findings-->
-                    </div> <!-- end key findings and image -->
+
+                  </div>
+                    </div> <!--end key findings container-->
+                    </div> <!-- end key findings + dashboard image -->
             
 
             <!--Survey Details Row-->
             <div class="row multi-cards-header">
                 <span>Survey Methods:</span>
             </div>
-            <div class="row mb-5">
-                <div class="col-md-3 custom-card-rows">
-                    <img src="http://placehold.it/400x200" class="card-img" alt="...">
+            <div class="row mb-5 d-flex justify-content-around">
+                <div class="col-md-2 custom-card-rows">
+                  <div class="card-body">
+                    <h5 class="card-title">13,100</h5>
+                    <p class="card-text">Number of households surveyed.</p>
+                  </div>
                 </div>
-                <div class="col-md-3 custom-card-rows">
-                    <img src="http://placehold.it/400x200" class="card-img" alt="...">
+                <div class="col-md-2 custom-card-rows">
+                  <div class="card-body">
+                    <h5 class="card-title">26</h5>
+                    <p class="card-text">Number of household batches by region.</p>
+                  </div>
                 </div>
-                <div class="col-md-3 custom-card-rows">
-                    <img src="http://placehold.it/400x200" class="card-img" alt="...">
+                <div class="col-md-2 custom-card-rows">
+                  <div class="card-body">
+                    <h5 class="card-title">2 weeks</h5>
+                    <p class="card-text">Period of daily expenses record.</p>
+                  </div>
                 </div>
-                <div class="col-md-3 custom-card-rows ">
-                    <img src="http://placehold.it/400x200" class="card-img" alt="...">
+                <div class="col-md-2 custom-card-rows">
+                  <div class="card-body">
+                    <h5 class="card-title">Oct 2017 - Sep 2018</h5>
+                    <p class="card-text">Survey Period.</p>
+                  </div>
                 </div>
              </div> 
 
@@ -248,7 +281,7 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-            <label for="userIncome">From the table, please enter your income quintile:</label>
+            <label for="userIncome">From the table, please estimate your household income quintile:</label>
             <select name="userIncome">
               <option value="First">First Quintile</option>
               <option value="Second" selected>Second Quintile</option>
@@ -258,40 +291,37 @@
             </select>
             </div>
             <div class="form-row">
+              <label for="categories">Please enter your average spending in the categories below:</label><br><br>
                 <div class="col-md-6">
                     <label for="foodBeverage">Food and Non-Alcoholic Beverages:</label><br>
                     <input type="number" id="foodBeverage" name="foodBeverage"><br><br>
-                    <label for="alcoholTobacco">Alcoholic Beverages and Tobacco:</label><br>
-                    <input type="number" id="alcoholTobacco" name="alcoholTobacco"><br><br>
-                    <label for="clothingFootwear">Clothing and Footwear:</label><br>
-                    <input type="number" id="clothingFootwear" name="clothingFootwear"><br><br>
                     <label for="housingUtils">Housing and Utilities:</label><br>
                     <input type="number" id="housingUtils" name="housingUtils"><br><br>
-                    <label for="furnishing">Furnishing, Household Equiptment and Regular Maintenance:</label><br>
-                    <input type="number" id="furnishing" name="furnishing"><br><br>
                     <label for="health">Health:</label><br>
                     <input type="number" id="health" name="health"><br><br>
                     <label for="transport">Transport:</label><br>
                     <input type="number" id="transport" name="transport"><br><br>
-                </div>
-                <div class="col-md-6">
                     <label for="communication">Communication:</label><br>
                     <input type="number" id="communication" name="communication"><br><br>
-                    <label for="recreationCulture">Recreation and Culture:</label><br>
+                </div>
+                <div class="col-md-6">
+                    
+                    <label for="recreationCulture">Recreation:</label><br>
                     <input type="number" id="recreationCulture" name="recreationCulture"><br><br>
                     <label for="education">Educational Services:</label><br>
                     <input type="number" id="education" name="education"><br><br>
                     <label for="foodServices">Food Serving Services:</label><br>
                     <input type="number" id="foodServices" name="foodServices"><br><br>
-                    <label for="accomodation">Accomodation Services:</label><br>
-                    <input type="number" id="accomodation" name="accomodation"><br><br>
                     <label for="misc">Misc Goods and Services:</label><br>
                     <input type="number" id="misc" name="misc"><br><br>
-                    <label for="naExpenditure">Non-Assignable Expenditure:</label><br>
-                    <input type="number" id="naExpenditure" name="naExpenditure"><br><br>
                 </div>
             </div>
         <div class="modal-footer">
+          <ul class="form-footer">
+            <li>Housing and Utilities includes Furnishings and Regular Household Maintenance, but excludes Imputed Rentals. </li>
+            <li>Alcohol,Tobacco, Clothing & Footwear, Personal Care and Insurance are categorized as Misc. Goods and Services.</li>
+            <li>Food Serving Services includes prepared food bought at Restaurants, Cafe, Pubs, Hawker Centers or Food Courts.</li>
+          </ul>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary">Submit</button>
         </div>
