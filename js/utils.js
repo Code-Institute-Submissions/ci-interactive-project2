@@ -66,8 +66,8 @@ function capitalizeFirstLetter(myString){
     return myString;
 }
 
-  function pushToTable(tableData){
-    tableHeader=Object.keys(tableData[0]).splice(1,3);
+function pushToTable(tableData){
+  tableHeader=Object.keys(tableData[0]).splice(1,3);
 
 //start pushing to table
 let table = d3.select('#table')
@@ -113,9 +113,7 @@ let cells = trow.selectAll('td')
       .duration(300);
 
       let x = d3.event.pageX - $("#bar-chart")[0].getBoundingClientRect().left;
-      let y = d3.event.pageY - $("#bar-chart")[0].getBoundingClientRect().bottom;
-      
-      //console.log($('#bar-chart')[0].getBoundingClientRect().top);        
+      let y = d3.event.pageY - $("#bar-chart")[0].getBoundingClientRect().bottom;       
 
 toolTip.style("opacity",1)
       .style("left",  x + "px")		
@@ -126,7 +124,6 @@ toolTip.style("opacity",1)
   }
 
   function handleMouseOut(d, i) {  
-
     d3.select(this)
       .transition()
       .style("fill",function(d) {

@@ -65,8 +65,6 @@ $(function(){
     
    pushToTable(tableData);
 
-   //debugger
-
    let barMargin = {top: 8, right: 30, bottom: 30, left: 50};
    let barWidth = $("#bar-chart").width()-barMargin.right-barMargin.left;
    let barHeight = 250-barMargin.top-barMargin.bottom;         /*$("#bar-chart").height();*/
@@ -149,8 +147,53 @@ $(function(){
           .attr("fill", function(d) { return chartColor(d.key); })
           .on("mouseover", handleMouseOver)
           .on("mouseout", handleMouseOut);
+
+          $("#submit-1").click(function(){
+          })
+   
+    const expRowChart = new dc.RowChart("#row-chart");
+    const expPieChart = new dc.PieChart("#pie-chart");
+    let rowMargin = {top: 8, right: 30, bottom: 30, left: 50};
+    let rowWidth = $("#bar-chart").width()-rowMargin.right-rowMargin.left;
+    let rowHeight = 600-rowMargin.top-rowMargin.bottom;           
           
-          
-    
+    let ndx = crossfilter(expData), 
+        catDim = ndx.dimension(function(d){return d.category;}),
+        sourceDim = ndx.dimension(function(d){return d.source;}),
+        spendPerCat = catDim.group().reduceSum(function(d){return +(d.spending.toFixed(2))}),
+        spendPerSource = sourceDim.group().reduceSum(function(d){return parseFloat(+d.spending.toFixed(2))});
+
+    let rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#488455", "#68ab77"), 9));
+
+    expRowChart
+      .width(rowWidth).height(rowHeight)
+      .dimension(catDim, "catDim")
+      .group(spendPerCat, "Spend")
+      .ordering(function(d){
+       //console.log(d);
+       return -d.value;})
+      .colors(rowColor)
+      .elasticX(true)
+      .title(function(d){
+          d.value = parseFloat(d.value.toFixed(2));
+          return d.key+ ": "+ d.value;
+        });
+
+      expPieChart
+     .width(300).height(300)
+     .dimension(sourceDim)
+     .group(spendPerSource)
+     .radius(250)
+     .innerRadius(50)
+     .colors(d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#488455", "#68ab77"), 2)))
+     .title(function(d){
+        d.value = parseFloat(d.value.toFixed(2));
+        return d.key+ ": "+ d.value;
+      })
+      .legend(new dc.HtmlLegend().container('#pie-legend').horizontal(false).highlightSelected(true))
+     .turnOnControls(true);
+
+     dc.renderAll();
+     dc.redrawAll();
    
 }); //end jQuery document ready
