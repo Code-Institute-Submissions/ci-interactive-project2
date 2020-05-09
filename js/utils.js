@@ -12,6 +12,7 @@ let misc = 0;
 const toolTip= d3.select("#bar-chart").append("div")	
                    .attr("id", "tooltip")				
                    .style("opacity", 0);
+                 
 
 function storageAvailable(type) {
     var storage;
@@ -304,7 +305,7 @@ toolTip.style("opacity",1)
    .dimension(sourceDim)
    .group(spendPerSource)
    .radius(250)
-   .innerRadius(50)
+   .innerRadius(25)
    .colors(d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#68ab77", "#d8485c"), 2)))
    .title(function(d){
       d.value = parseFloat(d.value.toFixed(2));
@@ -312,6 +313,37 @@ toolTip.style("opacity",1)
     })
     .legend(new dc.HtmlLegend().container('#pie-legend').horizontal(false).highlightSelected(true))
    .turnOnControls(true);
+    
+
+   RowChart.on('pretransition', function(chart){
+    chart.selectAll('g.row').on('mouseover', function() {
+      d3.select(this).select("rect")
+                     .attr('fill', '#ffc');
+      d3.select(this).select("text")
+                     .style("fill","#000");
+    }).on('mouseout', function() {
+      d3.select(this).select("rect")
+                     .attr('fill','#68ab77');
+      d3.select(this).select("text")
+                     .style('fill', '#fff');
+    })
+
+
+   });
+   
+   PieChart.on('pretransition', function(chart){
+    chart.selectAll('g.pie-slice').on('mouseover', function() {
+      d3.select(this).select("path")
+                    .attr('fill', '#ffc');
+      d3.select("g.pie-label-group").select("text")
+                     .style("fill","#000");
+    }).on('mouseout', function() {
+      d3.select(this).select("path")
+                    .attr('fill', '#68ab77');
+      d3.select("g.pie-label-group").select("text")
+                     .style("fill","#fff");
+    })
+  });
 
    dc.renderAll();
   
