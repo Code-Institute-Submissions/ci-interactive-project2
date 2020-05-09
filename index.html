@@ -273,12 +273,12 @@
                 <div class="col-md-5">
                   <div class="card border custom-card-cols">
                     <div class="card-header custom-card-header">
-                      <h3 class="card-title">Household Expenditure Source</h3>
+                      <h3 class="card-title">Household Expenditure Data Source</h3>
                     </div>
-                  <div class="card-body" id="pie-chart">         
-                <strong>Quintile</strong>
-                <a class="reset" href="javascript:expPieChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+                  <div class="card-body" id="pie-chart">   
+                    <a class="reset" href="javascript:expPieChart.filterAll();dc.renderAll();" style="display: none;">reset</a>      
                   </div>
+                  
                   <div id="pie-legend" class="dc-html-legend-container d-inline-block"></div>
                   <div class="clearfix"></div>
               </div>
@@ -287,11 +287,13 @@
                 <div class="col-md-7">
                   <div class="card border custom-card-cols">
                    <div class="card-header custom-card-header">
-                     <h3 class="card-title"> Average Household Expenditure by Goods and Services</h3>
+                     <h3 class="card-title"> Average Household Expenditure by Goods and Services
+                     </h3>
                    </div>
-                   <div class="card-body" id="row-chart">
-                     
-                   </div>
+                   <div class="card-body" id="row-chart">     
+                    <a class="reset" href="javascript:expRowChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+                  </div>   
+                    <div class="clearfix"></div>
                  </div>
                 </div>
               </div>
@@ -312,8 +314,8 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-            <label for="userIncome">From the table, please estimate your household income quintile:</label>
-            <select name="userIncome">
+            <label for="userQuintile">From the table, please estimate your household income quintile:</label>
+            <select name="userQuintile">
               <option value="First">First Quintile</option>
               <option value="Second" selected>Second Quintile</option>
               <option value="Third">Third Quintile</option>
@@ -325,26 +327,26 @@
               <label for="categories">Please enter your average spending in the categories below:</label><br><br>
                 <div class="col-md-6">
                     <label for="foodBeverage">Food and Non-Alcoholic Beverages:</label><br>
-                    <input type="number" id="foodBeverage" name="foodBeverage"><br><br>
+                    <input type="number" id="foodBeverage" name="foodBeverage" min="0" step="0.01"><br><br>
                     <label for="housingUtils">Housing and Utilities:</label><br>
-                    <input type="number" id="housingUtils" name="housingUtils"><br><br>
+                    <input type="number" id="housingUtils" name="housingUtils" min="0" step="0.01"><br><br>
                     <label for="health">Health:</label><br>
-                    <input type="number" id="health" name="health"><br><br>
+                    <input type="number" id="health" name="health" min="0" step="0.01"><br><br>
                     <label for="transport">Transport:</label><br>
-                    <input type="number" id="transport" name="transport"><br><br>
+                    <input type="number" id="transport" name="transport" min="0" step="0.01"><br><br>
                     <label for="communication">Communication:</label><br>
-                    <input type="number" id="communication" name="communication"><br><br>
+                    <input type="number" id="communication" name="communication" min="0" step="0.01"><br><br>
                 </div>
                 <div class="col-md-6">
                     
-                    <label for="recreationCulture">Recreation:</label><br>
-                    <input type="number" id="recreationCulture" name="recreationCulture"><br><br>
+                    <label for="recreation">Recreation:</label><br>
+                    <input type="number" id="recreation" name="recreation" min="0" step="0.01"><br><br>
                     <label for="education">Educational Services:</label><br>
-                    <input type="number" id="education" name="education"><br><br>
+                    <input type="number" id="education" name="education" min="0" step="0.01"><br><br>
                     <label for="foodServices">Food Serving Services:</label><br>
-                    <input type="number" id="foodServices" name="foodServices"><br><br>
+                    <input type="number" id="foodServices" name="foodServices" min="0" step="0.01"><br><br>
                     <label for="misc">Misc Goods and Services:</label><br>
-                    <input type="number" id="misc" name="misc"><br><br>
+                    <input type="number" id="misc" name="misc" min="0" step="0.01"><br><br>
                 </div>
             </div>
         <div class="modal-footer">
