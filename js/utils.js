@@ -284,14 +284,12 @@ toolTip.style("opacity",1)
     let rowMargin = {top: 8, right: 30, bottom: 30, left: 50};
     let rowWidth = $("#row-chart").width()-rowMargin.right-rowMargin.left;
     let rowHeight = 300-rowMargin.top-rowMargin.bottom; 
-    let rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#488455", "#68ab77"), 9));
 
     RowChart
     .width(rowWidth).height(rowHeight)
     .dimension(catDim, "catDim")
     .group(spendPerCat, "Spend")
     .ordering(function(d){
-     //console.log(d);
      return -d.value;})
     .colors(rowColor)
     .elasticX(true)
@@ -316,34 +314,60 @@ toolTip.style("opacity",1)
     
 
    RowChart.on('pretransition', function(chart){
-    chart.selectAll('g.row').on('mouseover', function() {
+  let color = chart.selectAll('g.row').on('mouseover', function(){
+    color = d3.select(this).select("rect").attr('fill');
+    d3.select(this).select("rect")
+                   .attr('fill', '#ffc');
+    d3.select(this).select("text")
+                   .style("fill","#000");
+    return color;
+  });
+
+    chart.selectAll('g.row').on('mouseout', function() {    
       d3.select(this).select("rect")
-                     .attr('fill', '#ffc');
-      d3.select(this).select("text")
-                     .style("fill","#000");
-    }).on('mouseout', function() {
-      d3.select(this).select("rect")
-                     .attr('fill','#68ab77');
+                     .attr('fill', color);  
       d3.select(this).select("text")
                      .style('fill', '#fff');
-    })
-
-
+    });
    });
+
    
    PieChart.on('pretransition', function(chart){
-    chart.selectAll('g.pie-slice').on('mouseover', function() {
-      d3.select(this).select("path")
-                    .attr('fill', '#ffc');
-      d3.select("g.pie-label-group").select("text")
-                     .style("fill","#000");
-    }).on('mouseout', function() {
-      d3.select(this).select("path")
-                    .attr('fill', '#68ab77');
-      d3.select("g.pie-label-group").select("text")
-                     .style("fill","#fff");
-    })
-  });
+    
+  chart.on('filtered', function() {
+   let slice0Class = d3.select('g.pie-slice-group').selectAll("g").attr('class');
+
+//   console.log(slice0Class);
+//   console.log(chart.filters()[0]);
+//   console.log(chart._group.top(2));
+
+   let pat = /\bselected\b/g;
+
+    if (chart.filters()[0]=="user" && chart._group.top(2)[1].value>0){
+      rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#7e1b28", "#e4818e"), 9));
+      RowChart.colors(rowColor);
+      debugger
+    }else if (chart.filters()[0]=="national" && chart._group.top(2)[1].value==0){   //user is 0
+      rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
+      RowChart.colors(rowColor);
+      debugger
+    }else if(chart.filters()[0]=="national" && chart._group.top(2)[1].value>10){   //user is not 0
+      rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
+      RowChart.colors(rowColor);
+      debugger
+    }else if(chart.filters()[0]==undefined && chart._group.top(2)[1].value==0){   //user is 0
+      rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
+      RowChart.colors(rowColor);
+      debugger
+    }else if(chart.filters()[0]==undefined && chart._group.top(2)[1].value>0){
+      rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2452d5", "#7bb788"), 9));
+      RowChart.colors(rowColor);
+      debugger
+    }
+});
+
+});
+  
 
    dc.renderAll();
   

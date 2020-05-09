@@ -1,5 +1,6 @@
 const expRowChart = new dc.RowChart("#row-chart");
 const expPieChart = new dc.PieChart("#pie-chart");
+let rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
 
 $(function(){
 
@@ -71,8 +72,6 @@ $(function(){
                     spendPerCat = catDim.group().reduceSum(function(d){return +d.spending}),
                     spendPerSource = sourceDim.group().reduceSum(function(d){return +d.spending});
 
-            //    console.log(catDim.top(Infinity));
-
             pushToTable(tableData);
             drawBar(tableData);
             renderPlots(expRowChart, expPieChart, tempndx, catDim, sourceDim, spendPerCat, spendPerSource);
@@ -85,11 +84,12 @@ $(function(){
                 ndx.add(expData);
                 filteredQuint = quintDim.filter(quintile);
                 byCat = filteredQuint.top(Infinity);
-                //console.log(byCat);
                 setTimeout(function(){
                     
                     tempndx.remove();
                     tempndx.add(byCat);
+                    rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2452d5", "#7bb788"), 9));
+                    expRowChart.colors(rowColor);
                     dc.redrawAll();
                 }, 1000);
                 $('#formModal').modal('hide');
