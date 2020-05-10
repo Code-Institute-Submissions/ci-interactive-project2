@@ -337,32 +337,23 @@ toolTip.style("opacity",1)
   chart.on('filtered', function() {
    let slice0Class = d3.select('g.pie-slice-group').selectAll("g").attr('class');
 
-//   console.log(slice0Class);
-//   console.log(chart.filters()[0]);
-//   console.log(chart._group.top(2));
-
    let pat = /\bselected\b/g;
 
     if (chart.filters()[0]=="user" && chart._group.top(2)[1].value>0){
       rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#7e1b28", "#e4818e"), 9));
       RowChart.colors(rowColor);
-      debugger
-    }else if (chart.filters()[0]=="national" && chart._group.top(2)[1].value==0){   //user is 0
+    }else if (chart.filters()[0]=="national" && chart._group.top(2)[1].value==0){   //not user
       rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
       RowChart.colors(rowColor);
-      debugger
     }else if(chart.filters()[0]=="national" && chart._group.top(2)[1].value>10){   //user is not 0
       rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
       RowChart.colors(rowColor);
-      debugger
-    }else if(chart.filters()[0]==undefined && chart._group.top(2)[1].value==0){   //user is 0
+    }else if(chart.filters()[0]==undefined && chart._group.top(2)[1].value==0){   //not user
       rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
       RowChart.colors(rowColor);
-      debugger
     }else if(chart.filters()[0]==undefined && chart._group.top(2)[1].value>0){
       rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2452d5", "#7bb788"), 9));
       RowChart.colors(rowColor);
-      debugger
     }
 });
 

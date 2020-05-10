@@ -53,24 +53,32 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
-  
+        <!-- Nav Item - Form -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="modal" data-target="#formModal">
             <i class="fas fa-edit"></i>
-            <span>Form</span>
+            <span>Household Expenditure Form</span>
+          </a>
+        </li>
+
+         <!-- Nav Item - Form -->
+         <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="modal" data-target="#expHistoryform">
+            <i class="fas fa-edit"></i>
+            <span>Expenditure Tracking Form</span>
           </a>
         </li>
   
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#table">
             <i class="fas fa-table"></i>
             <span>Tables</span></a>
         </li>
   
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#row-chart">
             <i class="fas fa-chart-line"></i>
             <span>Charts</span></a>
         </li>
@@ -313,7 +321,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header custom-form-header">
-          <h5 class="modal-title" id="formModalLabel">User Expenditure Form</h5>
+          <h5 class="modal-title" id="formModalLabel">Expenditure History Form</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -330,7 +338,7 @@
             </select>
             </div>
             <div class="form-row">
-              <label for="categories">Please enter your average spending in the categories below:</label><br><br>
+              <label for="categories">Please enter your average household spending in the categories below:</label><br><br>
                 <div class="col-md-6">
                     <label for="foodBeverage">Food and Non-Alcoholic Beverages:</label><br>
                     <input type="number" id="foodBeverage" name="foodBeverage" min="0" step="0.01"><br><br>
@@ -367,6 +375,97 @@
       </div>    <!--closes modal body-->
     </div>      <!--closes modal content-->
   </div>        <!--closes modal dialog-->
+</div>          <!--closes modal wrapper-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="expHistoryform" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-form-header">
+        <h5 class="modal-title" id="formModalLabel">Expenditure Tracking Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <!--table--> 
+        <table class="table table-hover table-sm">
+          <caption style="caption-side:top"> Please key in the past 6 month's expenses in each category:</caption>
+          <thead>
+            <tr>
+              <th scope="col">Categories</th>
+              <th scope="col">Dec 19</th>
+              <th scope="col">Jan 20</th>
+              <th scope="col">Feb 20</th>
+              <th scope="col">Mar 20</th>
+              <th scope="col">Apr 20</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Food and Non-Alcoholic Beverages</th>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+            </tr>
+            <tr>
+              <th scope="row">Food Serving Services</th>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+            </tr>
+            <tr>
+              <th scope="row">Housing and Utilities</th>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+            </tr>
+            <tr>
+              <th scope="row">Transport</th>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+            </tr>
+            <tr>
+              <th scope="row">Educational Services</th>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+            </tr>
+            <tr>
+              <th scope="row">Misc. Goods and Services</th>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+              <td contenteditable="false"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      <div class="modal-footer">
+        <ul class="form-footer">
+          <li>Housing and Utilities includes Furnishings and Regular Household Maintenance, but excludes Imputed Rentals. </li>
+          <li>Alcohol,Tobacco, Clothing & Footwear, Personal Care and Insurance are categorized as Misc. Goods and Services.</li>
+          <li>Food Serving Services includes prepared food bought at Restaurants, Cafe, Pubs, Hawker Centers or Food Courts.</li>
+        </ul>
+        <button type="button" class="btn btn-custom" id = "edit">Edit</button>
+        <button type="button" class="btn btn-custom" id="save">Save</button>
+      </div>
+    </div>    <!--closes modal body-->
+  </div>      <!--closes modal content-->
+</div>        <!--closes modal dialog-->
 </div>          <!--closes modal wrapper-->
 
   <!-- Optional JavaScript -->

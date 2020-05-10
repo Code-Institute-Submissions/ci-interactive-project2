@@ -4,11 +4,17 @@ let rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788
 
 $(function(){
 
+//Sidebar toggle on click
     $('.sidebarToggle').on('click', function (e) {
         e.preventDefault();
         $('.sidebar').toggleClass('toggled');
     });
 
+//Editable form validation
+    $('[contenteditable="true"]').keypress(function(e) {
+        var x = event.charCode || event.keyCode;
+        if (isNaN(String.fromCharCode(e.which)) && x!=46 || x===32 || x===13 || (x===46 && event.currentTarget.innerText.includes('.'))) e.preventDefault();
+    });
         //variables for table
     let tableData;
     let tableHeader=[];
