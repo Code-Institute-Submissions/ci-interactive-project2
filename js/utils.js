@@ -167,6 +167,43 @@ let cells = trow.selectAll('td')
       return data;
   }//end populate variables
 
+  function tabletoJSON(tableid,objArr){
+    $(tableid).find('tbody tr').each(function(i,d){
+      let obj1 = {};
+      let obj2 = {};
+      let obj3 = {};
+      let obj4 = {};
+      let obj5 = {};
+      let obj6 = {};
+      let cat = $(this).find('th').first().text();
+      let val1 = parseFloat($(this).find('td:nth-child(2)').text(),2);
+      let val2 = parseFloat($(this).find('td:nth-child(3)').text(),2);
+      let val3 = parseFloat($(this).find('td:nth-child(4)').text(),2);
+      let val4 = parseFloat($(this).find('td:nth-child(5)').text(),2);
+      let val5 = parseFloat($(this).find('td:nth-child(6)').text(),2);
+      let val6 = parseFloat($(this).find('td:nth-child(7)').text(),2);
+      obj1['categories'] = cat;
+      obj1['date'] = moment().subtract(5,'months').format('DD-MM-YY');
+      obj1['spending'] = val1;
+      obj2['categories'] = cat;
+      obj2['date'] = moment().subtract(4,'months').format('DD-MM-YY');
+      obj2['spending'] = val2;
+      obj3['categories'] = cat;
+      obj3['date'] = moment().subtract(3,'months').format('DD-MM-YY');
+      obj3['spending'] = val3;
+      obj4['categories'] = cat;
+      obj4['date'] = moment().subtract(2,'months').format('DD-MM-YY');
+      obj4['spending'] = val4;
+      obj5['categories'] = cat;
+      obj5['date'] = moment().subtract(1,'months').format('DD-MM-YY');
+      obj5['spending'] = val5;
+      obj6['categories'] = cat;
+      obj6['date'] = moment().format('DD-MM-YY');
+      obj6['spending'] = val6;
+      objArr.push(obj1,obj2,obj3,obj4,obj5,obj6);
+  });  
+  }
+
   function handleMouseOver(d, i) {  // Add interactivity
 
     d3.select(this)

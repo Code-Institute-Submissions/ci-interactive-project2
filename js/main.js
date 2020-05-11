@@ -1,6 +1,7 @@
 const expRowChart = new dc.RowChart("#row-chart");
 const expPieChart = new dc.PieChart("#pie-chart");
 let rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
+let jsonArr=[];
 
 $(function(){
 
@@ -10,11 +11,15 @@ $(function(){
         $('.sidebar').toggleClass('toggled');
     });
 
-//Editable form validation
-    $('[contenteditable="true"]').keypress(function(e) {
-        var x = event.charCode || event.keyCode;
-        if (isNaN(String.fromCharCode(e.which)) && x!=46 || x===32 || x===13 || (x===46 && event.currentTarget.innerText.includes('.'))) e.preventDefault();
-    });
+  
+$('#table-form tr:first th:last-child').html(moment().format('MMM YY'));
+$('#table-form tr:first th:nth-last-child(2)').html(moment().subtract(1, 'months').format('MMM YY'));
+$('#table-form tr:first th:nth-last-child(3)').html(moment().subtract(2, 'months').format('MMM YY'));
+$('#table-form tr:first th:nth-last-child(4)').html(moment().subtract(3, 'months').format('MMM YY'));
+$('#table-form tr:first th:nth-last-child(5)').html(moment().subtract(4, 'months').format('MMM YY'));
+$('#table-form tr:first th:nth-last-child(6)').html(moment().subtract(5, 'months').format('MMM YY'));
+
+
         //variables for table
     let tableData;
     let tableHeader=[];
@@ -54,6 +59,14 @@ $(function(){
           evt.preventDefault();
        }
     });
+
+    //Editable form validation
+    $('.formData').keypress(function(e){
+        let char=e.key;
+        if ((isNaN(char)||(e.which==32)) && (char !== '.')){ 
+        e.preventDefault();
+        }
+    });
     
 
     if (storageAvailable('localStorage')) {
@@ -82,7 +95,7 @@ $(function(){
             drawBar(tableData);
             renderPlots(expRowChart, expPieChart, tempndx, catDim, sourceDim, spendPerCat, spendPerSource);
 
-            $("#submit-1").click(function(e){
+            $("#submit").click(function(e){
                 quintile = $("select[name=userQuintile").val();
                 filteredQuint = quintDim.filter(null);
                 populateVar(expData);
@@ -100,7 +113,25 @@ $(function(){
                 }, 1000);
                 $('#formModal').modal('hide');
                 }); 
-            
+             
+                $("#edit").click(function(e){
+                   let editable = $(".formData").attr("contenteditable");
+                   if (editable == "false"){
+                    $(".formData").attr("contenteditable","true");
+                   } else {
+                    $(".formData").attr("contenteditable","false");
+                   }
+                });
+                
+                
+                $('#save').click(function(e){
+                    e.preventDefault();
+                 tabletoJSON('#table-form',jsonArr);
+                 console.log(jsonArr); 
+                 'localStorage'.setItem(trackData,jsonArr);
+                });
+
+                
 
         }); //end ajax
         } else {
