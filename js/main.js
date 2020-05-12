@@ -2,6 +2,7 @@ const expRowChart = new dc.RowChart("#row-chart");
 const expPieChart = new dc.PieChart("#pie-chart");
 let rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
 let jsonArr=[];
+let genRan = false;
 
 $(function(){
 
@@ -11,13 +12,29 @@ $(function(){
         $('.sidebar').toggleClass('toggled');
     });
 
-  
+//set date header for table
 $('#table-form tr:first th:last-child').html(moment().format('MMM YY'));
 $('#table-form tr:first th:nth-last-child(2)').html(moment().subtract(1, 'months').format('MMM YY'));
 $('#table-form tr:first th:nth-last-child(3)').html(moment().subtract(2, 'months').format('MMM YY'));
 $('#table-form tr:first th:nth-last-child(4)').html(moment().subtract(3, 'months').format('MMM YY'));
 $('#table-form tr:first th:nth-last-child(5)').html(moment().subtract(4, 'months').format('MMM YY'));
 $('#table-form tr:first th:nth-last-child(6)').html(moment().subtract(5, 'months').format('MMM YY'));
+
+  //disallow e,+ and - in input
+  $("input[type=number]").keypress(function(evt){
+    if(evt.charCode == 45 || evt.charCode == 43 || evt.charCode == 101) {
+      alert("Keys are not accepted");
+      evt.preventDefault();
+   }
+});
+
+//Editable form validation
+$('.formData').keypress(function(e){
+    let char=e.key;
+    if ((isNaN(char)||(e.which==32)) && (char !== '.')){ 
+    e.preventDefault();
+    }
+});
 
 
         //variables for table
@@ -52,23 +69,6 @@ $('#table-form tr:first th:nth-last-child(6)').html(moment().subtract(5, 'months
         }
       }
 
-      //disallow e,+ and - in input
-      $("input[type=number]").keypress(function(evt){
-        if(evt.charCode == 45 || evt.charCode == 43 || evt.charCode == 101) {
-          alert("Keys are not accepted");
-          evt.preventDefault();
-       }
-    });
-
-    //Editable form validation
-    $('.formData').keypress(function(e){
-        let char=e.key;
-        if ((isNaN(char)||(e.which==32)) && (char !== '.')){ 
-        e.preventDefault();
-        }
-    });
-    
-
     if (storageAvailable('localStorage')) {
         // localStorage is availables
         let doFirst = getData('localStorage','tableData',settings1);
@@ -94,6 +94,16 @@ $('#table-form tr:first th:nth-last-child(6)').html(moment().subtract(5, 'months
             pushToTable(tableData);
             drawBar(tableData);
             renderPlots(expRowChart, expPieChart, tempndx, catDim, sourceDim, spendPerCat, spendPerSource);
+            if (localStorage.getItem('trackData')) {
+                console.log('Getting from storage')
+                jsonArr = JSON.parse(localStorage.getItem('trackData'));
+            } else{
+                alert('Tracking data not available');
+                genRan = true;                          // generate random data
+                jsonArr=tabletoJSON('#table-form');
+            }
+
+            
 
             $("#submit").click(function(e){
                 quintile = $("select[name=userQuintile").val();
@@ -113,6 +123,8 @@ $('#table-form tr:first th:nth-last-child(6)').html(moment().subtract(5, 'months
                 }, 1000);
                 $('#formModal').modal('hide');
                 }); 
+
+
              
                 $("#edit").click(function(e){
                    let editable = $(".formData").attr("contenteditable");
@@ -126,12 +138,12 @@ $('#table-form tr:first th:nth-last-child(6)').html(moment().subtract(5, 'months
                 
                 $('#save').click(function(e){
                     e.preventDefault();
-                 tabletoJSON('#table-form',jsonArr);
-                 console.log(jsonArr); 
-                 'localStorage'.setItem(trackData,jsonArr);
+                    genRan=false;
+                    jsonArr=tabletoJSON('#table-form');
+                    localStorage.setItem('trackData',JSON.stringify(jsonArr));         //keep in local storage
                 });
 
-                
+
 
         }); //end ajax
         } else {

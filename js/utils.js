@@ -167,7 +167,16 @@ let cells = trow.selectAll('td')
       return data;
   }//end populate variables
 
-  function tabletoJSON(tableid,objArr){
+  function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function roundToX(num,places) {    
+    return +(Math.round(num + "e+" + places)  + "e-" + places);
+}
+
+  function tabletoJSON(tableid){
+    let objArr=[];
     $(tableid).find('tbody tr').each(function(i,d){
       let obj1 = {};
       let obj2 = {};
@@ -176,12 +185,29 @@ let cells = trow.selectAll('td')
       let obj5 = {};
       let obj6 = {};
       let cat = $(this).find('th').first().text();
-      let val1 = parseFloat($(this).find('td:nth-child(2)').text(),2);
-      let val2 = parseFloat($(this).find('td:nth-child(3)').text(),2);
-      let val3 = parseFloat($(this).find('td:nth-child(4)').text(),2);
-      let val4 = parseFloat($(this).find('td:nth-child(5)').text(),2);
-      let val5 = parseFloat($(this).find('td:nth-child(6)').text(),2);
-      let val6 = parseFloat($(this).find('td:nth-child(7)').text(),2);
+      let val1,val2,val3,val4,val5,val6
+      if(genRan){
+      val1 = roundToX(getRandomArbitrary(200,1000),2);
+      val2 = roundToX(getRandomArbitrary(200,1000),2);
+      val3 = roundToX(getRandomArbitrary(200,1000),2);
+      val4 = roundToX(getRandomArbitrary(200,1000),2);
+      val5 = roundToX(getRandomArbitrary(200,1000),2);
+      val6 = roundToX(getRandomArbitrary(200,1000),2);
+      $(".formData").attr("contenteditable","true");
+      $(this).find('td:nth-child(2)').append(val1);
+      $(this).find('td:nth-child(3)').append(val2);
+      $(this).find('td:nth-child(4)').append(val3);
+      $(this).find('td:nth-child(5)').append(val4);
+      $(this).find('td:nth-child(6)').append(val5);
+      $(this).find('td:nth-child(7)').append(val6);
+      }else{
+      val1 = parseFloat($(this).find('td:nth-child(2)').text());
+      val2 = parseFloat($(this).find('td:nth-child(3)').text());
+      val3 = parseFloat($(this).find('td:nth-child(4)').text());
+      val4 = parseFloat($(this).find('td:nth-child(5)').text());
+      val5 = parseFloat($(this).find('td:nth-child(6)').text());
+      val6 = parseFloat($(this).find('td:nth-child(7)').text());
+      }
       obj1['categories'] = cat;
       obj1['date'] = moment().subtract(5,'months').format('DD-MM-YY');
       obj1['spending'] = val1;
@@ -201,8 +227,12 @@ let cells = trow.selectAll('td')
       obj6['date'] = moment().format('DD-MM-YY');
       obj6['spending'] = val6;
       objArr.push(obj1,obj2,obj3,obj4,obj5,obj6);
+      $(".formData").attr("contenteditable","false");
   });  
+  return objArr;
   }
+
+
 
   function handleMouseOver(d, i) {  // Add interactivity
 
