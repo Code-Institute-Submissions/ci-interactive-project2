@@ -346,7 +346,7 @@ toolTip.style("opacity",1)
            .on("mouseout", handleMouseOut);
   }//end draw bar chart
 
-  function renderPlots(RowChart, PieChart, ndx, catDim, sourceDim, spendPerCat, spendPerSource){
+  function renderPlots(RowChart, PieChart, catDim, sourceDim, spendPerCat, spendPerSource){
 
     let rowMargin = {top: 8, right: 30, bottom: 30, left: 50};
     let rowWidth = $("#row-chart").width()-rowMargin.right-rowMargin.left;
@@ -378,6 +378,8 @@ toolTip.style("opacity",1)
     })
     .legend(new dc.HtmlLegend().container('#pie-legend').horizontal(false).highlightSelected(true))
    .turnOnControls(true);
+
+  
     
 
    RowChart.on('pretransition', function(chart){
@@ -427,7 +429,7 @@ toolTip.style("opacity",1)
 });
   
 
-   dc.renderAll();
+//   dc.renderAll();
   
 
   }

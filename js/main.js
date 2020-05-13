@@ -1,5 +1,6 @@
 const expRowChart = new dc.RowChart("#row-chart");
 const expPieChart = new dc.PieChart("#pie-chart");
+const multichart = new dc.SeriesChart("#line-chart");
 let rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
 let jsonArr=[];
 let genRan = false;
@@ -79,21 +80,6 @@ $('.formData').keypress(function(e){
             tableData=data1;    // "5 objs"
             expData=data2;      // "54 objs" 
 
-
-            let ndx = crossfilter(expData),
-                quintDim = ndx.dimension(function(d){return d.quintile;}),
-                filteredQuint = quintDim.filter(quintile),
-                byCat = filteredQuint.top(Infinity);
-
-                let tempndx = crossfilter(byCat),
-                    catDim = tempndx.dimension(function(d){return d.category;}),
-                    sourceDim = tempndx.dimension(function(d){return d.source;}),
-                    spendPerCat = catDim.group().reduceSum(function(d){return +d.spending}),
-                    spendPerSource = sourceDim.group().reduceSum(function(d){return +d.spending});
-
-            pushToTable(tableData);
-            drawBar(tableData);
-            renderPlots(expRowChart, expPieChart, tempndx, catDim, sourceDim, spendPerCat, spendPerSource);
             if (localStorage.getItem('trackData')) {
                 console.log('Getting from storage')
                 jsonArr = JSON.parse(localStorage.getItem('trackData'));
@@ -103,7 +89,65 @@ $('.formData').keypress(function(e){
                 jsonArr=tabletoJSON('#table-form');
             }
 
-            
+            let ndx = crossfilter(expData),
+                quintDim = ndx.dimension(function(d){return d.quintile;}),
+                filteredQuint = quintDim.filter(quintile),
+                byCat = filteredQuint.top(Infinity);
+
+            let tempndx = crossfilter(byCat),
+                catDim = tempndx.dimension(function(d){return d.category;}),
+                sourceDim = tempndx.dimension(function(d){return d.source;}),
+                spendPerCat = catDim.group().reduceSum(function(d){return +d.spending}),
+                spendPerSource = sourceDim.group().reduceSum(function(d){return +d.spending});
+
+            let parsedDate = d3.timeParse("%d-%m-%y");
+            let strDate = d3.timeFormat("%b %y");
+                jsonArr.forEach(function(d){
+                d.parsed = parsedDate(d.date);
+                d.nicedate = strDate(d.parsed);
+                });
+        
+            let cfx = crossfilter(jsonArr),
+                catdateDimension = cfx.dimension(function(d) {return [d.categories, d.parsed]; }),
+                dateDimension = cfx.dimension(function(d){ return d.parsed}),
+                catdateGroup = catdateDimension.group().reduceSum(function(d) { return +d.spending; }),
+                minDate = dateDimension.bottom(1)[0].parsed,
+                maxDate = dateDimension.top(1)[0].parsed,
+                
+                minStrDate = moment(minDate).subtract(1,'months')
+                maxStrDate = moment(maxDate).add(1,'months')
+
+
+            pushToTable(tableData);
+            drawBar(tableData);
+            renderPlots(expRowChart, expPieChart, catDim, sourceDim, spendPerCat, spendPerSource);
+
+            let lineMargin = {top: 8, right: 30, bottom: 30, left: 50};
+            let lineWidth = $("#line-chart").width()-rowMargin.right-rowMargin.left;
+            let lineHeight = 500-rowMargin.top-rowMargin.bottom; 
+
+            multichart
+            .width(lineWidth)
+            .height(lineHeight)
+            .chart(function(c) { return new dc.LineChart(c).curve(d3.curveLinear); })
+            .x(d3.scaleTime().domain([minStrDate,maxStrDate]))
+            .brushOn(false)
+            .yAxisLabel("Spending per month")
+            .xAxisLabel("Date")
+            .clipPadding(10)
+            .elasticY(true)
+            .dimension(catdateDimension)
+            .group(catdateGroup)
+            .mouseZoomable(false)
+            .seriesAccessor(function(d) {return "Categories: " + d.key[0];})
+            .keyAccessor(function(d) {return d.key[1];})
+            .valueAccessor(function(d) {return +d.value;})
+            .legend(dc.legend().x(450).y(320).itemHeight(13).gap(5).horizontal(1).legendWidth(240).itemWidth(170));
+            multichart.yAxis().tickFormat(function(d) {return d3.format(',d')(d+200);});
+            multichart.margins().left += 40;
+
+            debugger
+            dc.renderAll();
 
             $("#submit").click(function(e){
                 quintile = $("select[name=userQuintile").val();
