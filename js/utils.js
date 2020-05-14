@@ -246,7 +246,7 @@ let cells = trow.selectAll('td')
 
 toolTip.style("opacity",1)
       .style("left",  x + "px")		
-      .style("top",  (y-328) + "px")        
+      .style("top",  (y+28) + "px")        
       .html(d.key + "<br>" + '$'+d.value)
       .attr("data-type",d.key);
 
@@ -346,7 +346,7 @@ toolTip.style("opacity",1)
            .on("mouseout", handleMouseOut);
   }//end draw bar chart
 
-  function renderPlots(RowChart, PieChart, catDim, sourceDim, spendPerCat, spendPerSource){
+  function renderPieRow(RowChart, PieChart, catDim, sourceDim, spendPerCat, spendPerSource){
 
     let rowMargin = {top: 8, right: 30, bottom: 30, left: 50};
     let rowWidth = $("#row-chart").width()-rowMargin.right-rowMargin.left;
@@ -429,7 +429,30 @@ toolTip.style("opacity",1)
 });
   
 
-//   dc.renderAll();
-  
+  }
 
+  function renderSeries(chartSeries, dimension, group, earlierDate, currentDate){
+    let lineMargin = {top: 8, right: 20, bottom: 30, left: 20};
+    let lineWidth = $("#line-chart").width()+lineMargin.right+lineMargin.left;
+    let lineHeight = 400-lineMargin.top-lineMargin.bottom; 
+
+    chartSeries
+    .width(lineWidth)
+    .height(lineHeight)
+    .chart(function(c) { return new dc.LineChart(c).curve(d3.curveLinear); })
+    .x(d3.scaleTime().domain([earlierDate,currentDate]))
+    .brushOn(false)
+    .yAxisLabel("Spending per month")
+    .xAxisLabel("Date")
+    .clipPadding(10)
+    .elasticY(true)
+    .dimension(dimension)
+    .group(group)
+    .mouseZoomable(false)
+    .seriesAccessor(function(d) {return d.key[0];})
+    .keyAccessor(function(d) {return d.key[1];})
+    .valueAccessor(function(d) {return +d.value;})
+    .legend(dc.legend().x(450).y(210).itemHeight(13).gap(5).horizontal(1).legendWidth(240).itemWidth(170));
+    chartSeries.yAxis().tickFormat(function(d) {return d3.format(',d')(d+200);});
+    chartSeries.margins().left += 40;
   }

@@ -130,6 +130,18 @@ a.reset{
     color: #68ab77;
 }
 
+.highlight-red{
+    color: #d8485c;
+}
+
+.highlight-blue{
+    color: blue;
+}
+
+.highlight-orange{
+    color: orange;
+}
+
 .navbar-nav {
     display: flex;
     flex-direction: column;
@@ -302,4 +314,11 @@ thead{
     background-color: #68ab77;
     border-radius: 1.5rem;
     box-shadow: 0.05rem 0.1rem 0.2rem grey;
+}
+
+.user-form2{
+    background-color: #68ab77;
+    border-radius: 1.5rem;
+    box-shadow: 0.05rem 0.1rem 0.2rem grey;
+    color:white;
 }

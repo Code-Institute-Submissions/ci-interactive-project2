@@ -1,6 +1,6 @@
-const expRowChart = new dc.RowChart("#row-chart");
-const expPieChart = new dc.PieChart("#pie-chart");
-const multichart = new dc.SeriesChart("#line-chart");
+const expRowChart = new dc.RowChart("#row-chart","group1");
+const expPieChart = new dc.PieChart("#pie-chart","group1");
+const multichart = new dc.SeriesChart("#line-chart","group2");
 let rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2d5235", "#7bb788"), 9));
 let jsonArr=[];
 let genRan = false;
@@ -85,6 +85,7 @@ $('.formData').keypress(function(e){
                 jsonArr = JSON.parse(localStorage.getItem('trackData'));
             } else{
                 alert('Tracking data not available');
+                alert("Generate random")
                 genRan = true;                          // generate random data
                 jsonArr=tabletoJSON('#table-form');
             }
@@ -100,11 +101,9 @@ $('.formData').keypress(function(e){
                 spendPerCat = catDim.group().reduceSum(function(d){return +d.spending}),
                 spendPerSource = sourceDim.group().reduceSum(function(d){return +d.spending});
 
-            let parsedDate = d3.timeParse("%d-%m-%y");
-            let strDate = d3.timeFormat("%b %y");
+            let parsedDate = d3.timeParse("%d-%m-%y"); 
                 jsonArr.forEach(function(d){
                 d.parsed = parsedDate(d.date);
-                d.nicedate = strDate(d.parsed);
                 });
         
             let cfx = crossfilter(jsonArr),
@@ -113,41 +112,17 @@ $('.formData').keypress(function(e){
                 catdateGroup = catdateDimension.group().reduceSum(function(d) { return +d.spending; }),
                 minDate = dateDimension.bottom(1)[0].parsed,
                 maxDate = dateDimension.top(1)[0].parsed,
-                
-                minStrDate = moment(minDate).subtract(1,'months')
-                maxStrDate = moment(maxDate).add(1,'months')
+                minStrDate = moment(minDate).subtract(1,'months'),
+                maxStrDate = moment(maxDate).add(1,'months');
 
 
             pushToTable(tableData);
             drawBar(tableData);
-            renderPlots(expRowChart, expPieChart, catDim, sourceDim, spendPerCat, spendPerSource);
-
-            let lineMargin = {top: 8, right: 30, bottom: 30, left: 50};
-            let lineWidth = $("#line-chart").width()-rowMargin.right-rowMargin.left;
-            let lineHeight = 500-rowMargin.top-rowMargin.bottom; 
-
-            multichart
-            .width(lineWidth)
-            .height(lineHeight)
-            .chart(function(c) { return new dc.LineChart(c).curve(d3.curveLinear); })
-            .x(d3.scaleTime().domain([minStrDate,maxStrDate]))
-            .brushOn(false)
-            .yAxisLabel("Spending per month")
-            .xAxisLabel("Date")
-            .clipPadding(10)
-            .elasticY(true)
-            .dimension(catdateDimension)
-            .group(catdateGroup)
-            .mouseZoomable(false)
-            .seriesAccessor(function(d) {return "Categories: " + d.key[0];})
-            .keyAccessor(function(d) {return d.key[1];})
-            .valueAccessor(function(d) {return +d.value;})
-            .legend(dc.legend().x(450).y(320).itemHeight(13).gap(5).horizontal(1).legendWidth(240).itemWidth(170));
-            multichart.yAxis().tickFormat(function(d) {return d3.format(',d')(d+200);});
-            multichart.margins().left += 40;
-
-            debugger
-            dc.renderAll();
+            renderPieRow(expRowChart, expPieChart, catDim, sourceDim, spendPerCat, spendPerSource);
+            renderSeries(multichart,catdateDimension, catdateGroup, minStrDate, maxStrDate)
+             
+            dc.renderAll("group1");
+            dc.renderAll("group2");
 
             $("#submit").click(function(e){
                 quintile = $("select[name=userQuintile").val();
@@ -163,8 +138,8 @@ $('.formData').keypress(function(e){
                     tempndx.add(byCat);
                     rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#2452d5", "#7bb788"), 9));
                     expRowChart.colors(rowColor);
-                    dc.redrawAll();
-                }, 1000);
+                    dc.redrawAll("group1");
+                }, 1500);
                 $('#formModal').modal('hide');
                 }); 
 
@@ -181,10 +156,29 @@ $('.formData').keypress(function(e){
                 
                 
                 $('#save').click(function(e){
-                    e.preventDefault();
+
+                    $(".formData").attr("contenteditable","false");
                     genRan=false;
+                    $('#table-form tbody tr td').each(function() {
+                        if(this.innerText==""){
+                            this.innerText='0';
+                        }
+                      });
+
                     jsonArr=tabletoJSON('#table-form');
                     localStorage.setItem('trackData',JSON.stringify(jsonArr));         //keep in local storage
+                    $('#expHistoryform').modal('hide');
+
+                    jsonArr.forEach(function(d){
+                    d.parsed = parsedDate(d.date);
+                    });
+                
+                    setTimeout(function(){
+                    cfx.remove();
+                    cfx.add(jsonArr);
+                    dc.redrawAll("group2");
+                    }, 1500);
+                     
                 });
 
 

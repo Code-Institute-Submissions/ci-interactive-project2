@@ -250,7 +250,7 @@
                     </div>
                   <div class="card-body">
                     <div class= "row">
-                    <a class="user-form1" href="#" data-toggle="modal" data-target="#formModal">Enter my data</a>  
+                    <a class="user-form1" href="#" data-toggle="modal" data-target="#formModal">My Household Expenditure Form</a>  
                     </div>  
                     <div id="pie-chart">
                       <a class="reset" href="javascript:expPieChart.filterAll();dc.renderAll();" style="display: none;">
@@ -280,48 +280,56 @@
 
               <!--Survey Details Row-->
             <div class="row multi-cards-header">
-              <span>Survey Methods:</span>
+              <span>Key Findings:</span>
           </div>
           <div class="row mb-5 d-flex justify-content-center">
-            <div class="col-md-4">
-              <div class="row">
+            <div class="col-md-4 mb-4">
+
+              <div class="row justify-content-around">
               <div class="col-md-5 custom-card-rows">
-                <div class="card-body">
-                  <h5 class="card-title">13,100</h5>
-                  <hr>
-                  <p class="card-text">Number of households surveyed.</p>
+                <div class="card-body card-kf-body">
+                  <h5 class="card-title highlight-green">2.4%</h5>
+                  <p class="card-text">Income</p>
+                  <p class="card-footer">Average monthly income rose 2.4% per year in nominal terms.</p>
+                </div>
+              </div>
+                         
+      
+              <div class="col-md-5 custom-card-rows">
+                  <div class="card-body card-kf-body">
+                    <h5 class="card-title highlight-red">0.8%</h5>
+                    <p class="card-text">Expenditure</p>
+                    <p class="card-footer">Household expenditure on goods and services increased 0.8% per year.</p>
+                  </div>
+              </div>
+
+            </div> <!--closes row-->
+
+            <div class="row justify-content-around">
+              <div class="col-md-5 custom-card-rows">
+                <div class="card-body card-kf-body">
+                  <h5 class="card-title highlight-blue">96-98%</h5>
+                  <p class="card-text">Consumer Durables</p>
+                  <p class="card-footer">TV, washing machines and mobile phones ownership was near universal levels.</p>
                 </div>
               </div>
               <div class="col-md-5 custom-card-rows">
-                <div class="card-body">
-                  <h5 class="card-title">26</h5>
-                  <hr>
-                  <p class="card-text">Number of household batches by region.</p>
+                <div class="card-body card-kf-body">
+                  <h5 class="card-title highlight-orange">$810</h5>
+                  <p class="card-text">Food Serving Services</p>
+                  <p class="card-footer">Average monthly spending on food serving services increased to $810 from $760.</p>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-5 custom-card-rows">
-                <div class="card-body">
-                  <h5 class="card-title">2 weeks</h5>
-                  <hr>
-                  <p class="card-text">Period of daily expenses record.</p>
-                </div>
-              </div>
-              <div class="col-md-5 custom-card-rows">
-                <div class="card-body">
-                  <h5 class="card-title">Oct 2017 - Sep 2018</h5>
-                  <hr>
-                  <p class="card-text">Full survey period.</p>
-                </div>
-              </div>
-            </div>
+            <div class="col-md-6">
+            <a class="user-form2" href="#" data-toggle="modal" data-target="#expHistoryform">Expenditure Tracking Form</a>
+          </div>
           </div>
 
             <div class="col-md-8">
               <div class="card border custom-card-cols">
                 <div class="card-header custom-card-header">
-                  <h3 class="card-title"> Past 6 months expenditure
+                  <h3 class="card-title">My Past 6 Months Expenditure
                   </h3>
                 </div>
                 <div class="card-body" id="line-chart">     
