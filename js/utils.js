@@ -406,7 +406,8 @@ toolTip.style("opacity",1)
   chart.on('filtered', function() {
    let slice0Class = d3.select('g.pie-slice-group').selectAll("g").attr('class');
 
-   let pat = /\bselected\b/g;
+   console.log(chart.filters()[0])
+   console.log(chart._group.top(2)[1].value);
 
     if (chart.filters()[0]=="user" && chart._group.top(2)[1].value>0){
       rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#7e1b28", "#e4818e"), 9));
@@ -453,6 +454,7 @@ toolTip.style("opacity",1)
     .keyAccessor(function(d) {return d.key[1];})
     .valueAccessor(function(d) {return +d.value;})
     .legend(dc.legend().x(450).y(210).itemHeight(13).gap(5).horizontal(1).legendWidth(240).itemWidth(170));
-    chartSeries.yAxis().tickFormat(function(d) {return d3.format(',d')(d+200);});
+    chartSeries.yAxis().tickFormat(function(d) {return d3.format(',d')(d);});
+    chartSeries.xAxis().tickFormat(function(d) {return moment(d).format('MMM YY');});
     chartSeries.margins().left += 40;
   }

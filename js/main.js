@@ -84,8 +84,7 @@ $('.formData').keypress(function(e){
                 console.log('Getting from storage')
                 jsonArr = JSON.parse(localStorage.getItem('trackData'));
             } else{
-                alert('Tracking data not available');
-                alert("Generate random")
+                alert('Data not available, generating random data');
                 genRan = true;                          // generate random data
                 jsonArr=tabletoJSON('#table-form');
             }
@@ -114,7 +113,7 @@ $('.formData').keypress(function(e){
                 catdateGroup = catdateDimension.group().reduceSum(function(d) { return +d.spending; }),
                 minDate = dateDimension.bottom(1)[0].parsed,
                 maxDate = dateDimension.top(1)[0].parsed,
-                minStrDate = moment(minDate).subtract(1,'months'),
+                minStrDate = moment(minDate),    //.subtract(1,'months'),
                 maxStrDate = moment(maxDate).add(1,'months');
 
 

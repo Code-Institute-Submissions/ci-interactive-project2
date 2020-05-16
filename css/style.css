@@ -39,6 +39,10 @@ body {
     width: 60%;
 }
 
+.card-margin{
+    margin-bottom: 1.5rem;
+}
+
 .multi-cards-header{
     margin-left: 5px;
     font-family: 'Pridi', sans-serif;
@@ -193,7 +197,13 @@ a.reset{
 /*style for sidebar Toggle button*/
 .sidebarToggle {
    text-align: center;
+   background-color: #6495ed;
+   color: white;
 }
+
+.sidebarToggle:hover {
+    color: #ffffcc;
+ }
 
 .sidebar .sidebar-brand {
     height: 9.5rem;
@@ -234,13 +244,17 @@ a.reset{
         max-width: 100%;
     }
 
-    .card-wide{
-        max-width: 100%;
-    }
-
     .card-main{
         border-radius: 2rem;
         width: 80%;
+    }
+
+    .card-margin{
+        margin-bottom: 0rem;
+    }
+
+    .card-wide{
+        max-width: 100%;
     }
 
     .sidebar {
@@ -324,10 +338,11 @@ thead{
 }
 
 .user-form1{
-    background-color: #68ab77;
-    border-radius: 1rem;
+    background-color: #6495ed;
+    border-radius: 0.25rem;
     box-shadow: 0.05rem 0.1rem 0.2rem grey;
     color:white;
+    margin-bottom: 1rem;
 }
 
 .user-form1:hover{

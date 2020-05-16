@@ -78,7 +78,7 @@
   
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-          <a class="nav-link" href="#row-chart">
+          <a class="nav-link" href="#line-chart">
             <i class="fas fa-chart-line"></i>
             <span>Charts</span></a>
         </li>
@@ -110,10 +110,10 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Table</a>
+                <a class="nav-link" href="#table">Table</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Chart</a>
+                <a class="nav-link" href="#line-chart">Chart</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -142,20 +142,20 @@
                     <img src="image/family.jpg" class="img-fluid card-main" alt="...">
                 </div>
                 <div class="col-xs-6 col-md-7 custom-kf-box">
-                    <!--Key Findings Row-->
+                    <!--Top Spending Rows-->
                     <div class="row multi-cards-header">
                         <span>Top Household Spending Categories (National):</span>
                     </div>
-                  <!--  <div class="row custom-kf-rows">-->
+                 
                         <div class="card-deck">
                         <div class="col-xs-6 col-md-5 card mb-4 custom-card-cols">
                             <div class="row no-gutters">
                                     <div class="col-xs-2 col-md-2 card-img">
-                                      <i class="fas fa-car-side "></i>
+                                      <i class="fas fa-car-side highlight-red"></i>
                                       </div>
                                   <div class="col-xs-4 col-md-10 card-wide">
                                     <div class="card-body card-kf-body">
-                                      <h5 class="card-title highlight-green">$781</h5>
+                                      <h5 class="card-title highlight-red">$781</h5>
                                       <p class="card-text">Transport</p>
                                       <p class="card-footer">Includes private transport, public transports and air fares.</p>
                                     </div>
@@ -166,11 +166,11 @@
                         <div class="col-xs-6 col-md-5 card mb-4 custom-card-cols">
                             <div class="row no-gutters">
                                 <div class="col-xs-2 col-md-2 card-img">
-                                  <i class="fas fa-utensils"></i>
+                                  <i class="fas fa-utensils highlight-orange"></i>
                                 </div>
                                 <div class="col-xs-4 col-md-10 card-wide">
                                     <div class="card-body card-kf-body">
-                                      <h5 class="card-title highlight-green">$733</h5>
+                                      <h5 class="card-title highlight-orange">$733</h5>
                                       <p class="card-text">Food Serving Services</p>
                                       <p class="card-footer">Food bought in restaurants, cafes, pubs, hawker centers, food courts and coffee shops.</p>
                                     </div>
@@ -183,11 +183,11 @@
                         <div class="col-xs-6 col-md-5 card mb-4 custom-card-cols">
                           <div class="row no-gutters">
                             <div class="col-xs-2 col-md-2 card-img">
-                              <i class="fas fa-shopping-basket"></i>
+                              <i class="fas fa-shopping-basket highlight-blue"></i>
                             </div>
                             <div class="col-xs-4 col-md-10 card-wide">
                                 <div class="card-body card-kf-body">
-                                  <h5 class="card-title highlight-green">$389</h5>
+                                  <h5 class="card-title highlight-blue">$389</h5>
                                   <p class="card-text">Food and Non-Alcoholic Beverages</p>
                                   <p class="card-footer">Food bought from groceries or supermarkets.</p>
                                 </div>
@@ -198,7 +198,7 @@
                         <div class="col-xs-6 col-md-5 card mb-4 custom-card-cols">
                           <div class="row no-gutters">
                             <div class="col-xs-2 col-md-2 card-img">
-                              <i class="fas fa-umbrella-beach"></i>
+                              <i class="fas fa-umbrella-beach highlight-green"></i>
                             </div>
                             <div class="col-xs-4 col-md-10 card-wide">
                                 <div class="card-body card-kf-body">
@@ -211,13 +211,13 @@
                         </div>
 
                   </div>
-                    </div> <!--end key findings container-->
-                    </div> <!-- end key findings + dashboard image -->
+                    </div> <!--end top spendings container-->
+                    </div> <!-- end top spendings + dashboard image -->
             
 
-             <div class="row mb-5 justify-content-center">
+             <div class="row mb-5 justify-content-center align-items-center">
              <!-- Bar Chart -->
-              <div class="col-md-7">
+              <div class="col-xs-12 col-md-7 card-margin">
                 <div class="card border custom-card-cols">
                  <div class="card-header custom-card-header">
                    <h3 class="card-title"> Household Income vs Household Expenditure</h3>
@@ -229,7 +229,7 @@
               </div>
   
               <!--Table-->
-              <div class="col-md-5">
+              <div class="col-xs-12 col-md-5">
                 <div class="card border custom-card-cols">
                   <div class="card-header custom-card-header">
                     <h3 class="card-title"> Monthly Household Income vs Household Expenditure</h3>
@@ -243,14 +243,14 @@
               <!--Charts -->
               <div class="row justify-content-center">
 
-                <div class="col-md-5">
+                <div class="col-md-5 card-margin">
                   <div class="card border custom-card-cols">
                     <div class="card-header custom-card-header">
                       <h3 class="card-title">Household Expenditure Data Source</h3>
                     </div>
                   <div class="card-body">
                     <div class= "row d-inline-flex custom-button">
-                    <a class="user-form1" href="#" data-toggle="modal" data-target="#formModal">My Household Expenditure Form</a>  
+                    <a class="user-form1 btn" href="#" data-toggle="modal" data-target="#formModal">My Household Expenditure Form</a>  
                     </div>  
                     <div id="pie-chart">
                       <a class="reset" href="javascript:expPieChart.filterAll();dc.renderAll();" style="display: none;">
@@ -288,7 +288,7 @@
               <div class="row justify-content-around">
               <div class="col-md-5 custom-card-rows">
                 <div class="card-body card-kf-body">
-                  <h5 class="card-title highlight-green">2.4%</h5>
+                  <h5 class="card-title highlight-orange">2.4%</h5>
                   <p class="card-text">Income</p>
                   <p class="card-footer">Average monthly income rose 2.4% per year in nominal terms.</p>
                 </div>
@@ -315,7 +315,7 @@
               </div>
               <div class="col-md-5 custom-card-rows">
                 <div class="card-body card-kf-body">
-                  <h5 class="card-title highlight-orange">$810</h5>
+                  <h5 class="card-title highlight-green">$810</h5>
                   <p class="card-text">Food Serving Services</p>
                   <p class="card-footer">Average monthly spending on food serving services increased to $810 from $760.</p>
                 </div>
