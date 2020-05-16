@@ -29,9 +29,9 @@ body {
 }
 
 .card-img{
-    border-radius: 2rem;
-    width: 20%;
+    font-size: 2rem;
     align-self: center;
+    max-width: 20%;
 }
 
 .card-main{
@@ -60,6 +60,15 @@ body {
     margin-top: 0.5rem;
     margin-bottom: 0.25rem;
 }
+
+.card-wide{
+    max-width: 80%;
+}
+
+.custom-button{
+    text-align: center;
+}
+
 
 .custom-card-cols{
     align-self:center;
@@ -127,7 +136,7 @@ a.reset{
 }
 
 .highlight-green{
-    color: #68ab77;
+    color: green;
 }
 
 .highlight-red{
@@ -220,9 +229,13 @@ a.reset{
 }
   
 @media (min-width: 768px) {
+
     .card-img{
-        width: 100%;
-        align-self: center;
+        max-width: 100%;
+    }
+
+    .card-wide{
+        max-width: 100%;
     }
 
     .card-main{
@@ -312,13 +325,11 @@ thead{
 
 .user-form1{
     background-color: #68ab77;
-    border-radius: 1.5rem;
-    box-shadow: 0.05rem 0.1rem 0.2rem grey;
-}
-
-.user-form2{
-    background-color: #68ab77;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     box-shadow: 0.05rem 0.1rem 0.2rem grey;
     color:white;
+}
+
+.user-form1:hover{
+    color:#ffffcc;
 }

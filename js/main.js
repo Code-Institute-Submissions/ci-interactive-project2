@@ -92,6 +92,8 @@ $('.formData').keypress(function(e){
 
             let ndx = crossfilter(expData),
                 quintDim = ndx.dimension(function(d){return d.quintile;}),
+                totalCatDim = ndx.dimension(function(d){return d.category;}),
+                avgSpend = totalCatDim.group().reduceSum(function(d){return +d.spending}),
                 filteredQuint = quintDim.filter(quintile),
                 byCat = filteredQuint.top(Infinity);
 
