@@ -38,12 +38,8 @@ $('.formData').keypress(function(e){
 });
 
 
-        //variables for table
-    let tableData;
-    let tableHeader=[];
-
-    //variables for row/pie chart
-    let expData;    
+     //variables for table and pie and row chart
+    let tableData, expData;
 
     //API settings
     var settings1 = {
@@ -91,8 +87,6 @@ $('.formData').keypress(function(e){
 
             let ndx = crossfilter(expData),
                 quintDim = ndx.dimension(function(d){return d.quintile;}),
-                totalCatDim = ndx.dimension(function(d){return d.category;}),
-                avgSpend = totalCatDim.group().reduceSum(function(d){return +d.spending}),
                 filteredQuint = quintDim.filter(quintile),
                 byCat = filteredQuint.top(Infinity);
 
@@ -119,11 +113,18 @@ $('.formData').keypress(function(e){
 
             pushToTable(tableData);
             drawBar(tableData);
+            
             renderPieRow(expRowChart, expPieChart, catDim, sourceDim, spendPerCat, spendPerSource);
             renderSeries(multichart,catdateDimension, catdateGroup, minStrDate, maxStrDate)
              
             dc.renderAll("group1");
             dc.renderAll("group2");
+
+            $(window).resize(function() {
+             //   dc.renderAll('group1');
+                chart_display(expRowChart,expPieChart,multichart);
+            });
+
 
             $("#submit").click(function(e){
                 quintile = $("select[name=userQuintile").val();
@@ -143,7 +144,6 @@ $('.formData').keypress(function(e){
                 }, 1500);
                 $('#formModal').modal('hide');
                 }); 
-
 
              
                 $("#edit").click(function(e){

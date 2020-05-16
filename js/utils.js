@@ -349,9 +349,12 @@ toolTip.style("opacity",1)
   function renderPieRow(RowChart, PieChart, catDim, sourceDim, spendPerCat, spendPerSource){
 
     let rowMargin = {top: 8, right: 30, bottom: 30, left: 50};
-    let rowWidth = $("#row-chart").width()-rowMargin.right-rowMargin.left;
-    let rowHeight = 300-rowMargin.top-rowMargin.bottom; 
+    let pieMargin = {top: 8, right: 45, bottom: 30, left: 45};
+    let rowWidth = $("#horizontalChart").width()-rowMargin.right-rowMargin.left;
+    let rowHeight = (spendPerCat.all().length)*30;
+    let pieWidth = $("#ringChart").width()-pieMargin.left-pieMargin.right;
 
+    
     RowChart
     .width(rowWidth).height(rowHeight)
     .dimension(catDim, "catDim")
@@ -366,7 +369,7 @@ toolTip.style("opacity",1)
       });
 
     PieChart
-   .width(300).height(150)
+   .width(pieWidth).height(150)
    .dimension(sourceDim)
    .group(spendPerSource)
    .radius(250)
@@ -406,9 +409,6 @@ toolTip.style("opacity",1)
   chart.on('filtered', function() {
    let slice0Class = d3.select('g.pie-slice-group').selectAll("g").attr('class');
 
-   console.log(chart.filters()[0])
-   console.log(chart._group.top(2)[1].value);
-
     if (chart.filters()[0]=="user" && chart._group.top(2)[1].value>0){
       rowColor = d3.scaleOrdinal(d3.quantize(d3.interpolateHcl("#7e1b28", "#e4818e"), 9));
       RowChart.colors(rowColor);
@@ -433,9 +433,11 @@ toolTip.style("opacity",1)
   }
 
   function renderSeries(chartSeries, dimension, group, earlierDate, currentDate){
-    let lineMargin = {top: 8, right: 20, bottom: 30, left: 20};
-    let lineWidth = $("#line-chart").width()+lineMargin.right+lineMargin.left;
-    let lineHeight = 400-lineMargin.top-lineMargin.bottom; 
+    let lineMargin = {top: 8, right: 20, bottom: 30, left: 0};
+    let lineWidth = $("#series-chart").width();
+    let lineHeight = 400-lineMargin.top-lineMargin.bottom;
+    let yPosition = 0.584*lineHeight;
+    let xPosition = 0.663*lineWidth;
 
     chartSeries
     .width(lineWidth)
@@ -453,8 +455,41 @@ toolTip.style("opacity",1)
     .seriesAccessor(function(d) {return d.key[0];})
     .keyAccessor(function(d) {return d.key[1];})
     .valueAccessor(function(d) {return +d.value;})
-    .legend(dc.legend().x(450).y(210).itemHeight(13).gap(5).horizontal(1).legendWidth(240).itemWidth(170));
+    .legend(dc.legend().x(xPosition).y(yPosition).itemHeight(13).gap(5).horizontal(1).legendWidth(150).itemWidth(100));
     chartSeries.yAxis().tickFormat(function(d) {return d3.format(',d')(d);});
     chartSeries.xAxis().tickFormat(function(d) {return moment(d).format('MMM YY');});
-    chartSeries.margins().left += 40;
+    chartSeries.margins().left += 0;
   }
+
+  function chart_display(rowChart, pieChart, seriesChart){
+
+    let rowMargin = {top: 8, right: 30, bottom: 30, left: 50};
+    let lineMargin = {top: 8, right: 20, bottom: 30, left: 0};
+    let pieMargin = {top: 8, right: 45, bottom: 30, left: 45};
+    
+    let pieWidth = $("#ringChart").width()-pieMargin.right-pieMargin.left,
+        rowWidth = $("#horizontalChart").width()-rowMargin.right-rowMargin.left,
+        lineWidth = $("#series-chart").width(),
+        lineHeight = 400-lineMargin.top-lineMargin.bottom,
+        yPosition = 0.584*lineHeight,
+        xPosition = 0.653*lineWidth;
+
+        rowChart.svg()
+                .selectAll('svg')
+                .remove();
+        pieChart.svg()
+                .selectAll('svg')
+                .remove();
+        seriesChart.svg()
+                   .selectAll('svg')
+                   .remove();
+
+    rowChart.width(rowWidth);
+    pieChart.width(pieWidth);
+    seriesChart.width(lineWidth)
+               .legend(dc.legend().x(xPosition).y(yPosition).itemHeight(13).gap(5).horizontal(1).legendWidth(240).itemWidth(170));
+
+    dc.renderAll('group1');
+    dc.renderAll('group2');
+
+ }
