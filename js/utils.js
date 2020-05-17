@@ -77,6 +77,9 @@ function capitalizeFirstLetter(myString){
 }
 
 function pushToTable(tableData){
+
+  d3.select("#table").selectAll("table").remove();
+
   tableHeader=Object.keys(tableData[0]).splice(1,3);
 
 //start pushing to table
@@ -104,7 +107,7 @@ let trow = table.append('tbody')
                 .enter()
                 .append('tr');
 
-let cells = trow.selectAll('td')
+            trow.selectAll('td')
                 .data(function(d){
                  return (Object.values(d).splice(1,3));
                 })
@@ -348,7 +351,7 @@ toolTip.style("opacity",1)
 
   function renderPieRow(RowChart, PieChart, catDim, sourceDim, spendPerCat, spendPerSource){
 
-    let rowMargin = {top: 8, right: 30, bottom: 30, left: 50};
+    let rowMargin = {top: 8, right: 10, bottom: 30, left: 10};
     let pieMargin = {top: 8, right: 45, bottom: 30, left: 45};
     let rowWidth = $("#horizontalChart").width()-rowMargin.right-rowMargin.left;
     let rowHeight = (spendPerCat.all().length)*30;
@@ -433,8 +436,8 @@ toolTip.style("opacity",1)
   }
 
   function renderSeries(chartSeries, dimension, group, earlierDate, currentDate){
-    let lineMargin = {top: 8, right: 20, bottom: 30, left: 0};
-    let lineWidth = $("#series-chart").width();
+    let lineMargin = {top: 8, right: 10, bottom: 30, left: 10};
+    let lineWidth = $("#series-chart").width() - lineMargin.left - lineMargin.right;
     let lineHeight = 400-lineMargin.top-lineMargin.bottom;
     let yPosition = 0.584*lineHeight;
     let xPosition = 0.663*lineWidth;
@@ -463,13 +466,13 @@ toolTip.style("opacity",1)
 
   function chart_display(rowChart, pieChart, seriesChart){
 
-    let rowMargin = {top: 8, right: 30, bottom: 30, left: 50};
-    let lineMargin = {top: 8, right: 20, bottom: 30, left: 0};
+    let rowMargin = {top: 8, right: 10, bottom: 30, left: 10};
+    let lineMargin = {top: 8, right: 10, bottom: 30, left: 10};
     let pieMargin = {top: 8, right: 45, bottom: 30, left: 45};
     
     let pieWidth = $("#ringChart").width()-pieMargin.right-pieMargin.left,
         rowWidth = $("#horizontalChart").width()-rowMargin.right-rowMargin.left,
-        lineWidth = $("#series-chart").width(),
+        lineWidth = $("#series-chart").width() - lineMargin.left - lineMargin.right,
         lineHeight = 400-lineMargin.top-lineMargin.bottom,
         yPosition = 0.584*lineHeight,
         xPosition = 0.653*lineWidth;

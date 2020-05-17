@@ -121,7 +121,9 @@ $('.formData').keypress(function(e){
             dc.renderAll("group2");
 
             $(window).resize(function() {
-             //   dc.renderAll('group1');
+                
+                //debugger
+                pushToTable(tableData);
                 chart_display(expRowChart,expPieChart,multichart);
             });
 
