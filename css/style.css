@@ -36,6 +36,7 @@ body {
 
 .card-main{
     border-radius: 2rem;
+    width: 60%;
 }
 
 .card-margin{

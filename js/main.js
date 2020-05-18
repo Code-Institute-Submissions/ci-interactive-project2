@@ -122,7 +122,6 @@ $('.formData').keypress(function(e){
 
             $(window).resize(function() {
                 
-                //debugger
                 pushToTable(tableData);
                 chart_display(expRowChart,expPieChart,multichart);
             });

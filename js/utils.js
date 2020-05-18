@@ -8,11 +8,10 @@ let recreation = 0;
 let education = 0;
 let foodServices = 0;
 let misc = 0;
-
+      
 const toolTip= d3.select("#bar-chart").append("div")	
                    .attr("id", "tooltip")				
                    .style("opacity", 0);
-                 
 
 function storageAvailable(type) {
     var storage;
@@ -244,6 +243,7 @@ let trow = table.append('tbody')
       .style("fill","#fffccc")
       .duration(300);
 
+      debugger
       let x = d3.event.pageX - $("#bar-chart")[0].getBoundingClientRect().left;
       let y = d3.event.pageY - $("#bar-chart")[0].getBoundingClientRect().bottom;       
 
@@ -265,9 +265,16 @@ toolTip.style("opacity",1)
   }//end handleMouseOut
 
   function drawBar(data){
-    let barMargin = {top: 8, right: 30, bottom: 30, left: 50};
-    let barWidth = $("#bar-chart").width()-barMargin.right-barMargin.left;
-    let barHeight = 250-barMargin.top-barMargin.bottom;         /*$("#bar-chart").height();*/
+
+    d3.select("#bar-chart").selectAll("svg").remove();
+
+    let listOfValues = data.map(d=>d['average total income']).concat(data.map(a=>a['average total expenditure']));
+
+    let barMargin = {top: 8, right: 0, bottom: 30, left: 40},
+        barWidth = $("#bar-chart").width()-barMargin.left-barMargin.right,
+        barHeight = Math.round(d3.max(listOfValues)/100),
+        xAxisXtextPos = barWidth/3,
+        xAxisYtextPos = barHeight+barMargin.bottom;         
  
     // List of subgroups = header of the table 
      let subgroups=Object.keys(data[0]).splice(2,3);
@@ -276,14 +283,12 @@ toolTip.style("opacity",1)
      let groups = d3.map(data, function(d){
          return(d.quintile)}).keys()
  
-     
-     let listOfValues = data.map(d=>d['average total income']).concat(data.map(a=>a['average total expenditure']));
- 
      // append the svg object to the body of the page
      let barSvg = d3.select("#bar-chart")
                      .append("svg")
-                     .attr("width", barWidth+barMargin.right+barMargin.left)
+                     .attr("width", barWidth)
                      .attr("height", barHeight+barMargin.top+barMargin.bottom)
+                     .call(responsify)
                      .append("g")
                      .attr("transform","translate(" + barMargin.left + "," + barMargin.top+ ")");
      
@@ -297,8 +302,8 @@ toolTip.style("opacity",1)
              .call(d3.axisBottom(xScale).tickSize(0));
      barSvg.append('text')        
            .text('Income Quintile')
-           .attr("x", 250)
-           .attr("y", 240);
+           .attr("x", xAxisXtextPos)
+           .attr("y", xAxisYtextPos);
          
      let yScale = d3.scaleLinear()
              .domain([0, d3.max(listOfValues)])
@@ -324,6 +329,7 @@ toolTip.style("opacity",1)
                  .range([0,xScale.bandwidth()])
                  .padding([0.05]);
  
+      
      let chartColor = d3.scaleOrdinal()
                          .domain(subgroups)
                          .range(['#68ab77','#d8485c']);
@@ -348,6 +354,27 @@ toolTip.style("opacity",1)
            .on("mouseover", handleMouseOver)
            .on("mouseout", handleMouseOut);
   }//end draw bar chart
+
+  function responsify(svg) {
+    const container = d3.select(svg.node().parentNode),
+        width = parseInt(svg.style('width'), 10)+10,
+        height = parseInt(svg.style('height'), 10),
+        aspect = width / height;
+  
+    svg.attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMinYMid')
+        .call(resize);
+              
+      d3.select(window).on('resize.' + container.attr('id'), resize);
+     
+      function resize() {
+        const targetWidth = $("#bar-chart").width()-20;
+        svg.attr('width', targetWidth);
+        svg.attr('height', Math.round(targetWidth / aspect));
+      }
+  }
+    
+
 
   function renderPieRow(RowChart, PieChart, catDim, sourceDim, spendPerCat, spendPerSource){
 
