@@ -394,7 +394,7 @@ toolTip.style("opacity",1)
     .elasticX(true)
     .title(function(d){
         d.value = parseFloat(d.value.toFixed(2));
-        return d.key+ ": "+ d.value;
+        return d.key+ ": $"+ d.value;
       });
 
     PieChart
