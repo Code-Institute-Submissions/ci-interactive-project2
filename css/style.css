@@ -1,5 +1,17 @@
-h1, h2, h3, h4, h5{
-    font-family: 'Pridi', serif;
+a, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+a:hover {
+    color: #ffffcc;
+    text-decoration: none;
+}
+
+a.reset{
+    color: #68ab77;
+    display: flex;
 }
 
 body {
@@ -13,6 +25,11 @@ body {
 
 .btn-custom{
     background-color: #68ab77;
+    color: #ffffff;
+}
+
+.btn-custom1{
+    background-color: #6495ed;
     color: #ffffff;
 }
 
@@ -36,7 +53,7 @@ body {
 
 .card-main{
     border-radius: 2rem;
-    width: 60%;
+    width: 40%;
 }
 
 .card-margin{
@@ -123,22 +140,14 @@ body {
     pointer-events: none;			
 }
 
-
-a, a:hover, a:focus {
-    color: inherit;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-a.reset{
-    color: #68ab77;
-    display: flex;
-}
-
 .form-footer{
     font-size: 0.65rem;
     padding: 0rem;
     margin-bottom: 0.5rem;
+}
+
+h1, h2, h3, h4, h5{
+    font-family: 'Pridi', serif;
 }
 
 .highlight-green{
@@ -221,6 +230,10 @@ a.reset{
     font-size: 2rem;
 }  
 
+.sidebar-brand-text {
+    text-decoration: none;
+  }
+
 .sidebar.toggled {
     width: 0 !important;
     overflow: hidden;
@@ -240,8 +253,8 @@ a.reset{
     margin-right: 0;
 }
 
-.filter-red{
-    filter: invert(52%) sepia(13%) saturate(1593%) hue-rotate(314deg) brightness(86%) contrast(72%);
+.filter-orange{
+    filter: invert(60%) sepia(73%) saturate(1328%) hue-rotate(359deg) brightness(102%) contrast(108%);
 }
 
 .filter-verdi{
@@ -251,6 +264,7 @@ a.reset{
 table{
     color: #858796;
 }
+
 #table th{
     padding-right: 20px;
     text-transform: capitalize;
@@ -357,6 +371,7 @@ thead{
       .sidebar.toggled .sidebar-brand .sidebar-brand-text {
         display: none;
       }
+
 
 }
 

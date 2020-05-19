@@ -1,18 +1,12 @@
-let quintile= 'Second'; 
-let foodAndBeverage = 0;
-let housingUtils = 0;
-let health = 0;
-let transport = 0;
-let communication = 0;
-let recreation = 0;
-let education = 0;
-let foodServices = 0;
-let misc = 0;
+//initialize variables to be used in charts
+let quintile= 'Second', foodAndBeverage = 0, housingUtils = 0, health = 0, transport = 0, communication = 0,
+    recreation = 0, education = 0, foodServices = 0, misc = 0;
       
 const toolTip= d3.select("#bar-chart").append("div")	
                    .attr("id", "tooltip")				
                    .style("opacity", 0);
 
+//check if storage is available          
 function storageAvailable(type) {
     var storage;
     try {
@@ -38,6 +32,7 @@ function storageAvailable(type) {
     }
   }
 
+// retrieve data from storage
 function getFromStorage(storage,keyname){
       if (storage.getItem(keyname)) {
         console.log('Getting from Storage instead');
@@ -46,6 +41,7 @@ function getFromStorage(storage,keyname){
   }
 }
 
+//store data from API into storage
 function makeAPIcall(storage,settings,keyname){
     return $.ajax(settings).then(function(response){
       console.log('Making API call ...');
@@ -55,6 +51,7 @@ function makeAPIcall(storage,settings,keyname){
   });                       
 }
 
+//if data is in storage, return promise, else make API call
 function getData(type, keyname, settings){
     let storage = window[type];
     // Create a Deferred
@@ -67,7 +64,6 @@ function getData(type, keyname, settings){
       return makeAPIcall(storage,settings,keyname);    
   }
 }
-
 
 
 function capitalizeFirstLetter(myString){
@@ -117,6 +113,7 @@ let trow = table.append('tbody')
                 })   
 }//end push to table
 
+//put form inputs into variables
   function populateVar(data){
     quintile = $("select[name=userQuintile").val();
     foodAndBeverage = $("input[name=foodBeverage]").val();
@@ -169,17 +166,21 @@ let trow = table.append('tbody')
       return data;
   }//end populate variables
 
+  //function to randomize number within a limit
   function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
   }
 
+  //function to round a number by xx decimal places
   function roundToX(num,places) {    
     return +(Math.round(num + "e+" + places)  + "e-" + places);
 }
 
+
+//function to create JSON from table form input or from random data
   function tabletoJSON(tableid){
     let objArr=[];
-    $(tableid).find('tbody tr').each(function(i,d){
+    $(tableid).find('tbody tr').each(function(){
       let obj1 = {};
       let obj2 = {};
       let obj3 = {};
@@ -236,14 +237,13 @@ let trow = table.append('tbody')
 
 
 
-  function handleMouseOver(d, i) {  // Add interactivity
+  function handleMouseOver(d) {  //d3 bar chart on mouse over event
 
     d3.select(this)
       .transition()
       .style("fill","#fffccc")
       .duration(300);
 
-      debugger
       let x = d3.event.pageX - $("#bar-chart")[0].getBoundingClientRect().left;
       let y = d3.event.pageY - $("#bar-chart")[0].getBoundingClientRect().bottom;       
 
@@ -255,7 +255,7 @@ toolTip.style("opacity",1)
 
   }//end handleMouseOver
 
-  function handleMouseOut(d, i) {  
+  function handleMouseOut(d) {  //d3 bar chart on mouseout event
     d3.select(this)
       .transition()
       .style("fill",function(d) {
@@ -264,6 +264,7 @@ toolTip.style("opacity",1)
       toolTip.style("opacity",0);
   }//end handleMouseOut
 
+  //d3 draw bar chart
   function drawBar(data){
 
     d3.select("#bar-chart").selectAll("svg").remove();
@@ -279,7 +280,7 @@ toolTip.style("opacity",1)
     // List of subgroups = header of the table 
      let subgroups=Object.keys(data[0]).splice(2,3);
  
-     //List of groups
+     //List of groups - Quintile column in table
      let groups = d3.map(data, function(d){
          return(d.quintile)}).keys()
  
@@ -315,8 +316,7 @@ toolTip.style("opacity",1)
                    });
  
          barSvg.append("g")
-             .call(yAxis);
-             // text label for the y axis
+             .call(yAxis);              // text label for y-axis
          barSvg.append("text")
                .text("$('000)")
                .attr("x", -150)
@@ -338,7 +338,6 @@ toolTip.style("opacity",1)
      //Plot the bars
      barSvg.append("g")
            .selectAll("g")
-     // Enter in data = loop group per group
            .data(data)
            .enter()
            .append("g")
@@ -355,9 +354,10 @@ toolTip.style("opacity",1)
            .on("mouseout", handleMouseOut);
   }//end draw bar chart
 
+  //add svg that will response to window resize
   function responsify(svg) {
     const container = d3.select(svg.node().parentNode),
-        width = parseInt(svg.style('width'), 10)+10,
+        width = parseInt(svg.style('width'), 10)+20,
         height = parseInt(svg.style('height'), 10),
         aspect = width / height;
   
@@ -374,8 +374,7 @@ toolTip.style("opacity",1)
       }
   }
     
-
-
+//dc.js chart function to render pie/doughnut chart and row chart
   function renderPieRow(RowChart, PieChart, catDim, sourceDim, spendPerCat, spendPerSource){
 
     let rowMargin = {top: 8, right: 10, bottom: 30, left: 10};
@@ -411,9 +410,6 @@ toolTip.style("opacity",1)
     })
     .legend(new dc.HtmlLegend().container('#pie-legend').horizontal(false).highlightSelected(true))
    .turnOnControls(true);
-
-  
-    
 
    RowChart.on('pretransition', function(chart){
   let color = chart.selectAll('g.row').on('mouseover', function(){
@@ -459,11 +455,11 @@ toolTip.style("opacity",1)
 
 });
   
-
   }
 
+  //dc.js function to render Series Chart
   function renderSeries(chartSeries, dimension, group, earlierDate, currentDate){
-    let lineMargin = {top: 8, right: 10, bottom: 30, left: 10};
+    let lineMargin = {top: 8, right: 10, bottom: 30, left: 20};
     let lineWidth = $("#series-chart").width() - lineMargin.left - lineMargin.right;
     let lineHeight = 400-lineMargin.top-lineMargin.bottom;
     let yPosition = 0.584*lineHeight;
@@ -475,7 +471,7 @@ toolTip.style("opacity",1)
     .chart(function(c) { return new dc.LineChart(c).curve(d3.curveLinear); })
     .x(d3.scaleTime().domain([earlierDate,currentDate]))
     .brushOn(false)
-    .yAxisLabel("Spending per month")
+    .yAxisLabel("Spending per month ($)")
     .xAxisLabel("Date")
     .clipPadding(10)
     .elasticY(true)
@@ -488,9 +484,11 @@ toolTip.style("opacity",1)
     .legend(dc.legend().x(xPosition).y(yPosition).itemHeight(13).gap(5).horizontal(1).legendWidth(150).itemWidth(100));
     chartSeries.yAxis().tickFormat(function(d) {return d3.format(',d')(d);});
     chartSeries.xAxis().tickFormat(function(d) {return moment(d).format('MMM YY');});
-    chartSeries.margins().left += 0;
+    chartSeries.margins().left += 30;
+
   }
 
+  //function to redraw the charts on window resize
   function chart_display(rowChart, pieChart, seriesChart){
 
     let rowMargin = {top: 8, right: 10, bottom: 30, left: 10};

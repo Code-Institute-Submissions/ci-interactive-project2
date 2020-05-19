@@ -132,14 +132,14 @@
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
               <h1>My Spending Insights Dashboard</h1>
-              <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class=""></i> Arbitrary Button</a>
+              <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class=""></i> Button</a>
             </div>
 
             <!--Start of Content-->
             <!--Image and Survey Stats-->
             <div class="row justify-content-center">
-                <div class="col-xs-6 col-md-4 mb-4">
-                    <img src="image/family.jpg" class="card-main" alt="...">
+                <div class="col-xs-6 col-md-4 mb-4 d-flex align-self-center justify-content-center">
+                    <img src="image/family.jpg" class="card-main d-none d-md-flex" alt="...">
                 </div>
                 <div class="col-xs-12 col-md-7 custom-kf-box">
                     <!--Top Spending Rows-->
@@ -166,13 +166,13 @@
                         <div class="col-md-5 card mb-4 custom-card-cols">
                             <div class="row no-gutters">
                                 <div class="col-xs-2 col-md-2 card-img">
-                                  <i class="fas fa-utensils highlight-orange"></i>
+                                  <img class="filter-orange" src="image/utensils.svg"/>
                                 </div>
                                 <div class="col-xs-4 col-md-10 card-wide">
                                     <div class="card-body card-kf-body">
                                       <h5 class="card-title highlight-orange">$733</h5>
                                       <p class="card-text">Food Serving Services</p>
-                                      <p class="card-footer">Food bought in restaurants, cafes, pubs, hawker centers, food courts and coffee shops.</p>
+                                      <p class="card-footer">Food eaten in restaurants, cafes, pubs, hawker centers, food courts & coffee shops.</p>
                                     </div>
                                   </div> 
                                 </div>    
@@ -204,7 +204,7 @@
                                 <div class="card-body card-kf-body">
                                   <h5 class="card-title highlight-green">$379</h5>
                                   <p class="card-text">Recreational Activities</p>
-                                  <p class="card-footer">Packaged holidays, Information Processing Equiptment, Books, Newspaper and Stationery.</p>
+                                  <p class="card-footer">Packaged holidays, Information Processing Equipment, Books, Newspaper & Stationery.</p>
                                 </div>
                               </div> 
                             </div> 
@@ -283,7 +283,7 @@
               <span>Key Findings:</span>
           </div>
           <div class="row mb-5 d-flex justify-content-center">
-            <div class="col-sm-12 col-lg-4 mb-4">
+            <div class="col-sm-12 col-xl-4 mb-4">
 
               <div class="row justify-content-around">
               <div class="col-md-5 custom-card-rows">
@@ -305,7 +305,7 @@
 
             </div> <!--closes row-->
 
-            <div class="row justify-content-around">
+            <div class="row justify-content-around mb-3">
               <div class="col-md-5 custom-card-rows">
                 <div class="card-body card-kf-body">
                   <h5 class="card-title highlight-blue">96-98%</h5>
@@ -321,12 +321,12 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-2 d-inline-flex custom-button">
+            <div class="col-md-5 d-inline-flex custom-button">
             <a class="user-form1" href="#" data-toggle="modal" data-target="#expHistoryform">Expenditure Tracking Form</a>
           </div>
           </div>
 
-            <div class="col-md-12 col-lg-8" id="series-chart">
+            <div class="col-md-12 col-xl-8" id="series-chart">
               <div class="card border custom-card-cols">
                 <div class="card-header custom-card-header">
                   <h3 class="card-title">My Past 6 Months Expenditure
@@ -422,7 +422,7 @@
           <caption style="caption-side:top"> Please key in the past 6 month's expenses in each category:</caption>
           <thead>
             <tr>
-              <th scope="col">Categories</th>
+              <th scope="col">Categories ($) </th>
               <th scope="col"></th>
               <th scope="col"></th>
               <th scope="col"></th>
@@ -495,7 +495,7 @@
           <li>Alcohol,Tobacco, Clothing & Footwear, Personal Care and Insurance are categorized as Misc. Goods and Services.</li>
           <li>Food Serving Services includes prepared food bought at Restaurants, Cafe, Pubs, Hawker Centers or Food Courts.</li>
         </ul>
-        <button type="button" class="btn btn-custom" id ="edit">Edit</button>
+        <button type="button" class="btn btn-custom1" id ="edit">Edit</button>
         <button type="button" class="btn btn-custom" id="save">Save</button>
       </div>
     </div>    <!--closes modal body-->
