@@ -3,7 +3,7 @@ let quintile= 'Second', foodAndBeverage = 0, housingUtils = 0, health = 0, trans
     recreation = 0, education = 0, foodServices = 0, misc = 0;
       
 const toolTip= d3.select("#bar-chart").append("div")	
-                   .attr("id", "tooltip")				
+                   .attr("class", "tooltip")				
                    .style("opacity", 0);
 
 //check if storage is available          
@@ -287,7 +287,7 @@ toolTip.style("opacity",1)
      // append the svg object to the body of the page
      let barSvg = d3.select("#bar-chart")
                      .append("svg")
-                     .attr("width", barWidth)
+                     .attr("width", barWidth+10)
                      .attr("height", barHeight+barMargin.top+barMargin.bottom)
                      .call(responsify)
                      .append("g")
@@ -484,7 +484,7 @@ toolTip.style("opacity",1)
     .legend(dc.legend().x(xPosition).y(yPosition).itemHeight(13).gap(5).horizontal(1).legendWidth(150).itemWidth(100));
     chartSeries.yAxis().tickFormat(function(d) {return d3.format(',d')(d);});
     chartSeries.xAxis().tickFormat(function(d) {return moment(d).format('MMM YY');});
-    chartSeries.margins().left += 30;
+    chartSeries.margins().left += 15;
 
   }
 

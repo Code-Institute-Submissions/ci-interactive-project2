@@ -30,8 +30,7 @@
     <div class="d-flex" id="entire-container">
         <nav class="navbar-nav sidebar bg-custom">
         <!-- Sidebar -->
-            <ul class="sidebar-list">
-
+            
         <!-- Sidebar - Brand -->
         <div class="sidebar-brand">
         <a class="d-inline-block align-items-center justify-content-center" href="https://github.com/Oraclebun">
@@ -42,16 +41,17 @@
   
         <!-- Divider -->
         <hr class="sidebar-divider">
-  
+        <ul class="sidebar-list">
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
           <a class="nav-link" href="index.html">
             <i class="fas fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
+            <!-- Divider -->
+        <hr class="sidebar-divider">
         </li>
   
-        <!-- Divider -->
-        <hr class="sidebar-divider">
+        
 
         <!-- Nav Item - Form -->
         <li class="nav-item">
@@ -83,9 +83,6 @@
             <span>Charts</span></a>
         </li>
   
-        <!-- Divider -->
-        <hr class="d-none d-md-block">
-  
       </ul>
     </nav>
       <!-- End of Sidebar -->
@@ -98,8 +95,8 @@
   
             <!-- Sidebar Toggle (Topbar) -->
             <button class="sidebarToggle btn">
-              <i class=""></i>
-              <span>Sidebar Toggle</span>
+              <i class="fas fa-bars"></i>
+              <span class="btn-toggle">Sidebar Toggle</span>
             </button>
   
             <!-- Topbar Navbar -->
@@ -116,8 +113,11 @@
                 <a class="nav-link" href="#line-chart">Chart</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="https://www.singstat.gov.sg/">Data Source</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#">
-                  <img class="filter-verdi" src="image/avatar.svg"/>
+                  <img class="filter-verdi" src="image/avatar.svg" alt="green icon of man and woman"/>
                 </a>
               </li>
   
@@ -139,7 +139,7 @@
             <!--Image and Survey Stats-->
             <div class="row justify-content-center">
                 <div class="col-xs-6 col-md-4 mb-4 d-flex align-self-center justify-content-center">
-                    <img src="image/family.jpg" class="card-main d-none d-md-flex" alt="...">
+                    <img src="image/family.jpg" class="card-main d-none d-md-flex" alt="image of a paper silhoutte family with green background">
                 </div>
                 <div class="col-xs-12 col-md-7 custom-kf-box">
                     <!--Top Spending Rows-->
@@ -153,7 +153,7 @@
                                     <div class="col-xs-2 col-md-2 card-img">
                                       <i class="fas fa-car-side highlight-red"></i>
                                       </div>
-                                  <div class="col-xs-4 col-md-10 card-wide">
+                                  <div class="col-xs-4 col-md-10">
                                     <div class="card-body card-kf-body">
                                       <h5 class="card-title highlight-red">$781</h5>
                                       <p class="card-text">Transport</p>
@@ -166,13 +166,13 @@
                         <div class="col-md-5 card mb-4 custom-card-cols">
                             <div class="row no-gutters">
                                 <div class="col-xs-2 col-md-2 card-img">
-                                  <img class="filter-orange" src="image/utensils.svg"/>
+                                  <img class="filter-orange" src="image/utensils.svg" alt="icon of utensils"/>
                                 </div>
-                                <div class="col-xs-4 col-md-10 card-wide">
+                                <div class="col-xs-4 col-md-10">
                                     <div class="card-body card-kf-body">
                                       <h5 class="card-title highlight-orange">$733</h5>
                                       <p class="card-text">Food Serving Services</p>
-                                      <p class="card-footer">Food eaten in restaurants, cafes, pubs, hawker centers, food courts & coffee shops.</p>
+                                      <p class="card-footer">Food consumed in restaurants, cafes, pubs, hawker centers, food courts & coffee shops.</p>
                                     </div>
                                   </div> 
                                 </div>    
@@ -185,7 +185,7 @@
                             <div class="col-xs-2 col-md-2 card-img">
                               <i class="fas fa-shopping-basket highlight-blue"></i>
                             </div>
-                            <div class="col-xs-4 col-md-10 card-wide">
+                            <div class="col-xs-4 col-md-10">
                                 <div class="card-body card-kf-body">
                                   <h5 class="card-title highlight-blue">$389</h5>
                                   <p class="card-text">Food and Non-Alcoholic Beverages</p>
@@ -200,7 +200,7 @@
                             <div class="col-xs-2 col-md-2 card-img">
                               <i class="fas fa-umbrella-beach highlight-green"></i>
                             </div>
-                            <div class="col-xs-4 col-md-10 card-wide">
+                            <div class="col-xs-4 col-md-10">
                                 <div class="card-body card-kf-body">
                                   <h5 class="card-title highlight-green">$379</h5>
                                   <p class="card-text">Recreational Activities</p>
@@ -222,7 +222,7 @@
                  <div class="card-header custom-card-header">
                    <h3 class="card-title"> Household Income vs Household Expenditure</h3>
                  </div>
-                 <div class="card-body" id="bar-chart">
+                 <div class="card-body bar-plot" id="bar-chart">
                    
                  </div>
                </div>
@@ -249,7 +249,7 @@
                       <h3 class="card-title">Household Expenditure Data Source</h3>
                     </div>
                   <div class="card-body">
-                    <div class= "row d-inline-flex custom-button">
+                    <div class= "row d-inline-flex btn-container">
                     <a class="user-form1 btn" href="#" data-toggle="modal" data-target="#formModal">My Household Expenditure Form</a>  
                     </div>  
                     <div id="pie-chart">
@@ -321,7 +321,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-5 d-inline-flex custom-button">
+            <div class="col-md-5 d-inline-flex btn-container">
             <a class="user-form1" href="#" data-toggle="modal" data-target="#expHistoryform">Expenditure Tracking Form</a>
           </div>
           </div>
@@ -345,11 +345,11 @@
 </div> <!--end entire container-->
 
 <!-- Modal -->
-<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="formModalExp" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header custom-form-header">
-          <h5 class="modal-title" id="formModalLabel">Average Monthly Household Expenditure Form</h5>
+          <h5 class="modal-title" id="formModalExp">Average Monthly Household Expenditure Form</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -357,7 +357,7 @@
         <div class="modal-body">
             <div class="form-group">
             <label for="userQuintile">From the table, please estimate your household income quintile:</label>
-            <select name="userQuintile">
+            <select name="userQuintile" id="userQuintile">
               <option value="First">First Quintile</option>
               <option value="Second" selected>Second Quintile</option>
               <option value="Third">Third Quintile</option>
@@ -366,7 +366,7 @@
             </select>
             </div>
             <div class="form-row">
-              <label for="categories">Please enter your average household spending in the categories below:</label><br><br>
+              <p>Please enter your average household spending in the categories below:</p><br><br>
                 <div class="col-md-6">
                     <label for="foodBeverage">Food and Non-Alcoholic Beverages:</label><br>
                     <input type="number" id="foodBeverage" name="foodBeverage" min="0" step="0.01"><br><br>
@@ -407,11 +407,11 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="expHistoryform" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+<div class="modal fade" id="expHistoryform" tabindex="-1" role="dialog" aria-labelledby="formModalTrack" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header custom-form-header">
-        <h5 class="modal-title" id="formModalLabel">Expenditure Tracking Form</h5>
+        <h5 class="modal-title" id="formModalTrack">Expenditure Tracking Form</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -519,7 +519,7 @@
     <script>window.dc || document.write('<script src="assets/dc-4.0.0/dc.js">\x3C/script>')</script>
     <!--<script src="assets/dc-4.0.0/dc.js"></script>-->
     <!--local script-->
-    <script type="text/javascript" src="js/utils.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
