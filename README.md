@@ -21,8 +21,8 @@ Red (#d8485c) was chosen as a secondary colour. Red is used to show national exp
 Too add attractiveness to the statistics, a dash of other colours are used sparingly in icons and numbers and to colour the lines in the series line chart (to show difference among spending categories).
 
 ### User Stories
-1. The user is a general public in Singapore who wishes to know the national average household expenditures by income quintile and to view it visually in the charts.
-2. The user wishes to quickly be able to see which income quintile his/her household belongs to.
+1. The targetted audience for this website are the general public in Singapore and any individual in Singapore who wishes to know the national average household expenditures by income quintile and to view it visually in the charts.
+2. The user is able to see from the website (in table and chart provided) which income quintile his/her household belongs to.
 3. By entering their household expenditure, the user is able to compare his/her household's expenditure to the national average of the same income quintile.
 4. The user has past expenditure data which he/she would like to see visually on the dashboard chart.
 5. The user will also be able to see which category of goods and services his/her household spent the most on.
@@ -55,9 +55,10 @@ Prior to starting this website, a layout was roughly drawn to visualize the arra
 ## Technologies Used
 The technologies and libraries used in this project are:
 + [HTML5](https://html.spec.whatwg.org/multipage/). HTML5 is the markup language that stores the structure of the webpage document.
-+ [CSS3](CSS3 (https://www.w3.org/Style/CSS/). CSS3 is the style sheet language that supports the presentation of document written in markup language. It is used to customize colour and styling on this website.
++ [CSS3](https://www.w3.org/Style/CSS/). CSS3 is the style sheet language that supports the presentation of document written in markup language. It is used to customize colour and styling on this website.
++ [Javascript](https://developer.oracle.com/sg/javascript/). Javascript is used as the brains behind the functionality of this website.
 + [Bootstrap 4](https://getbootstrap.com/) is a used as a framework for making this project website responsive and mobile-ready.
-+ [jQuery](https://jquery.com/) is used to makes HTML document traversal and manipulation, event handling, animation, and Ajax simpler for this project.
++ [jQuery](https://jquery.com/) is used to makes HTML document traversal and manipulation, event handling, animation, and Ajax simpler for this project. It is a javascript library used to simplify javascript.
 + [Moment.js](https://momentjs.com/) is used to parse dates for chart handling and also ease display of dates in string format.
 + [D3.js](https://d3js.org/) is used to display data based documents visually.
 + [DC.js](https://dc-js.github.io/dc.js/) is used to leverages d3.js to render charts in CSS-friendly SVG format. 
@@ -95,7 +96,14 @@ The method of test used for this project is purely manual testing:
 + Functionality for the series chart:  
     * When hover at specific points on the any line in the series chart, a dot will appear along with 2 dotted lines that projects onto the y and x axis. A tooltip will appear to show the date, time and value of the specific point.
     * When the mouse hovers over a specific legend, the line that corresponds to the selected legend will show while the other lines will fade.
-4. The project is tested on 2 different browser types mainly (Chrome and Firefox).
+4. The project is tested on 2 different browser types mainly (Chrome and Firefox). It is also tested on the Iphone XS. From the internal browser developer interface, toggle device toolbar is selected for different screen sizes to manually view and test the mobile responsiveness. The list of toggle devices screen tested using the browser developer interface are :
+    * Pixel 2 and 2XL
+    * IPhone 5
+    * IPhone 6/7/8 and 6/7/8 Plus
+    * Ipad and Ipad Pro
+    * Nexus 6 and Nexus 7
+    * My Laptop (Width 2880)
+    * Laptop with HiDPI Screen (Width 1440)
 
 ### Forms
 + Household Expenditure Form Behaviour:
@@ -109,3 +117,25 @@ The method of test used for this project is purely manual testing:
     * A simple form validation is in place to prevent users entering non-digits symbols and space.
 
 ### Bugs
++ During the testing stage, there seems to be a bug when changing from large-screen to small screen devices. The website doesn't seem to refresh during resizing and in order to view correctly everytime the screen sizes are change, a refresh is done.
++ For the Expenditure Tracking form, although users are still only allowed to key in digits, they are still able to cut and paste other "illegal" characters into the forms. This could be fixed by using a more advance client side form validator or writing one. However, due to the limited time available while working on this project, this could be done as a future improvement.
+
+## Deployment.
+Currently this interactive website is deployed via GitHub pages. 
+The code version control is maintained through git and repository is hosted on github pages.
+
+---
+<https://oraclebun.github.io/ci-interactive-project2/>
+
+---
+This project can also be cloned and run locally from: 
+
+---
+https://github.com/Oraclebun/ci-interactive-project2
+
+---
+
+To clone the project, type in the command 'git clone https://github.com/Oraclebun/ci-interactive-project2' in the command prompt/ terminal window. 
+
+## Credits
+### Contents and Media
