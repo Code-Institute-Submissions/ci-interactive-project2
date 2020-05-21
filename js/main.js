@@ -89,7 +89,6 @@ $(function () {
         console.log("Getting from storage");
         jsonArr = JSON.parse(localStorage.getItem("trackData"));
       } else {
-        alert("Data not available, generating random data");
         genRan = true; // generate random data
         jsonArr = tabletoJSON("#table-form");
       }
@@ -270,7 +269,6 @@ $(function () {
         console.log("Getting from storage");
         jsonArr = JSON.parse(localStorage.getItem("trackData"));
       } else {
-        alert("Data not available, generating random data");
         genRan = true; // generate random data
         jsonArr = tabletoJSON("#table-form");
       }
