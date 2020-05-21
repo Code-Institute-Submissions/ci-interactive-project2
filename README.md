@@ -69,16 +69,43 @@ The technologies and libraries used in this project are:
 The method of test used for this project is purely manual testing:
 1. The html file is validated using [W3C Markup Validation Service](https://validator.w3.org/).
 2. The css file is checked using [CSS Lint](http://csslint.net/)
-3. Functional testing:
-a. Sidebar Toggle Button, when clicked will toggle the sidebar as expected.
-    i. When toggled the sidebar will hide for mobile devices and will show a min width bar for tablet and larger devices. The bar contains icons for each menu items.
-    ii. The Dashboard and icon links back to homepage.
-    iii. The Forms will open up its respective form.
-    iv. The table direct users to the dashboard table.
-    v. The charts direct users to the dashboard series chart.
-    vi. Similar behaviour is observed for the top navbar.
-    vii. Data Source in the top navbar will link users to the Singstat website where users can explore more about the Household Survey.
-b. For the grouped bar chart, when hovered, the bars will change to a bright yellow colour and a blue tooltip that shows the value will appear. 
-c. The doughnut chart has a blue button with the text "My Household Expenditure Form". When data is keyed in and form is submitted, the doughnut chart will show 2 portions. 1 red and 1 green. The horizontal bar chart on its left will show bars in shades of blue to blue-green.
-    i. The green portion on the doughnut represents national data. When clicked on the green portion, the horizontal bar will change to green colour. The bars length will change accordingly to its data value.
-    ii. The red portion on the doughnut represents user data. When clicked on the red portion, the horizontal bar will change to red colour. The bars length will change accordingly to its data value.
+3. Validating functionality:
++ HTML on load will make 2 API calls to retrieve data and store it into the local storage or session storage depending on the availability.
++ Random data will also be generated for the series chart.
++ Sidebar Toggle Button, when clicked will toggle the sidebar as expected.
+    * When toggled the sidebar will hide for mobile devices and will show a min width bar for tablet and larger devices. The bar contains icons for each menu items.
+    * The Dashboard and icon links back to homepage.
+    * The Forms will open up its respective form.
+    * The table direct users to the dashboard table.
+    * The charts direct users to the dashboard series chart.
+    * Similar behaviour is observed for the top navbar.
+    * Data Source in the top navbar will link users to the Singstat website where users can explore more about the Household Survey.
++ For the grouped bar chart, when hovered, the bars will change to a bright yellow colour and a blue tooltip that shows the value will appear. 
++ The doughnut chart has a blue button with the text "My Household Expenditure Form". When data is keyed in and form is submitted, the doughnut chart will show 2 portions. 1 red and 1 green. The horizontal bar chart on its left will show bars in shades of blue to blue-green.
+    * The green portion on the doughnut represents national data. When clicked on the green portion, the horizontal bar will change to green colour. The bars length will change accordingly to its data value.
+    * The red portion on the doughnut represents user data. When clicked on the red portion, the horizontal bar will change to red colour. The bars length will change accordingly to its data value.
+    * When either portions are selected, a blue text with the word "reset" will appear below the "My Household Expenditure Form" button.
+    * When reset is clicked, the doughnut chart and the horizontal bar chart are re-rendered.
++ The horizontal bar chart when hovered will turn to bright yellow colour. The text showing the categories will change from white to black colour and a tooltip will appear to show the bar's value.
+    * When any bar is clicked, the doughnut chart will change to show the portions of the national average versus user's average expenditure for the selected goods and services.
+    * If any bar is clicked, a blue text with the word "reset" will appear above the horizontal bar chart.
+    * When clicked, both the doughnut and horizontal bar chart are re-rendered.
++ Below the 4 Key Findings cards, there is a blue "Expenditure Tracking Form Button". 
+    * When there is valid data, clicking the save button will trigger the series chart to plot the corresponding data.
++ Functionality for the series chart:  
+    * When hover at specific points on the any line in the series chart, a dot will appear along with 2 dotted lines that projects onto the y and x axis. A tooltip will appear to show the date, time and value of the specific point.
+    * When the mouse hovers over a specific legend, the line that corresponds to the selected legend will show while the other lines will fade.
+4. The project is tested on 2 different browser types mainly (Chrome and Firefox).
+
+### Forms
++ Household Expenditure Form Behaviour:
+    * When any of the input fields are empty, if the submit button is pressed, no data will be submitted and doughnut chart and horizontal bar chart will not be triggered for a redrawn.
+    * A simple form validation is in place for the inputs that only allow users to key in numbers without e, +ve and -ve sign. 
++ Expenditure Tracking Form Behaviour:
+    * When clicked, a modal with a form-table will pop up. Clicking on the blue "Edit" button will allow form editting. 
+    * When the "Edit" button is clicked again, the table-form is now non-editable until the edit button is clicked again.
+    * Clicking on the red save button with empty input by the user will clear the data in the series chart. All lines will be plotted at 0.
+    * Clicking on the red save button will also return the form to non-editable state.
+    * A simple form validation is in place to prevent users entering non-digits symbols and space.
+
+### Bugs

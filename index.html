@@ -253,7 +253,7 @@
                     <a class="user-form1 btn" href="#" data-toggle="modal" data-target="#formModal">My Household Expenditure Form</a>  
                     </div>  
                     <div id="pie-chart">
-                      <a class="reset" href="javascript:expPieChart.filterAll();dc.renderAll();" style="display: none;">
+                      <a class="reset" href="javascript:expPieChart.filterAll();dc.renderAll('group1');" style="display: none;">
                         <span>reset</span></a> 
                     </div>
                   </div>
@@ -270,7 +270,7 @@
                      </h3>
                    </div>
                    <div class="card-body" id="row-chart">     
-                    <a class="reset" href="javascript:expRowChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+                    <a class="reset" href="javascript:expRowChart.filterAll();dc.renderAll('group1');" style="display: none;">reset</a>
                   </div>   
                     <div class="clearfix"></div>
                  </div>
@@ -496,7 +496,7 @@
           <li>Food Serving Services includes prepared food bought at Restaurants, Cafe, Pubs, Hawker Centers or Food Courts.</li>
         </ul>
         <button type="button" class="btn btn-custom1" id ="edit">Edit</button>
-        <button type="button" class="btn btn-custom" id="save">Save</button>
+        <button type="button" class="btn btn-danger" id="save">Save</button>
       </div>
     </div>    <!--closes modal body-->
   </div>      <!--closes modal content-->
