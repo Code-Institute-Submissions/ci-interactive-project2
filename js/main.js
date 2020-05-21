@@ -133,6 +133,21 @@ $('.formData').keypress(function(e){
 
             //submit button click event (for household expenditure form)
             $("#submit").click(function(e){
+
+                let a = $("input[name=foodBeverage]").val().length,
+                    b = $("input[name=housingUtils]").val().length,
+                    c = $("input[name=health]").val().length,
+                    d = $("input[name=transport]").val().length,
+                    f = $("input[name=communication").val().length,
+                    g = $("input[name=recreation").val().length,
+                    h = $("input[name=education").val().length,
+                    i = $("input[name=foodServices").val().length,
+                    j = $("input[name=misc").val().length;
+
+                if(!a||!b||!c||!d||!f||!g||!h||!i||!j){
+                    e.preventDefault();
+                } else {
+
                 quintile = $("select[name=userQuintile").val();
                 filteredQuint = quintDim.filter(null);
                 populateVar(expData);
@@ -148,6 +163,7 @@ $('.formData').keypress(function(e){
                     expRowChart.colors(rowColor);
                     dc.redrawAll("group1");
                 }, 1500);
+                }
                 $('#formModal').modal('hide');
                 }); 
 

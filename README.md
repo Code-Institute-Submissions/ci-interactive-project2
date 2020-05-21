@@ -68,3 +68,17 @@ The technologies and libraries used in this project are:
 ## Testing
 The method of test used for this project is purely manual testing:
 1. The html file is validated using [W3C Markup Validation Service](https://validator.w3.org/).
+2. The css file is checked using [CSS Lint](http://csslint.net/)
+3. Functional testing:
+a. Sidebar Toggle Button, when clicked will toggle the sidebar as expected.
+    i. When toggled the sidebar will hide for mobile devices and will show a min width bar for tablet and larger devices. The bar contains icons for each menu items.
+    ii. The Dashboard and icon links back to homepage.
+    iii. The Forms will open up its respective form.
+    iv. The table direct users to the dashboard table.
+    v. The charts direct users to the dashboard series chart.
+    vi. Similar behaviour is observed for the top navbar.
+    vii. Data Source in the top navbar will link users to the Singstat website where users can explore more about the Household Survey.
+b. For the grouped bar chart, when hovered, the bars will change to a bright yellow colour and a blue tooltip that shows the value will appear. 
+c. The doughnut chart has a blue button with the text "My Household Expenditure Form". When data is keyed in and form is submitted, the doughnut chart will show 2 portions. 1 red and 1 green. The horizontal bar chart on its left will show bars in shades of blue to blue-green.
+    i. The green portion on the doughnut represents national data. When clicked on the green portion, the horizontal bar will change to green colour. The bars length will change accordingly to its data value.
+    ii. The red portion on the doughnut represents user data. When clicked on the red portion, the horizontal bar will change to red colour. The bars length will change accordingly to its data value.
