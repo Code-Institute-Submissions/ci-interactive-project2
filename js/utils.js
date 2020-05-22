@@ -1,3 +1,6 @@
+//utility file to validate forms, execute api calls and store data to storage, push data to table, create jsonObject from
+//form, plot charts and make charts responsive
+
 //initialize variables to be used in charts
 let quintile = "Second",
   foodAndBeverage = 0,
