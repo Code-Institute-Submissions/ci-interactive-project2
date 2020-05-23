@@ -43,7 +43,7 @@ Prior to starting this website, a layout was roughly drawn to visualize the arra
 + Below the doughnut and the horizontal bar chart the user should be able to see a group of "Key Findings" cards. The cards aim to summarize the key findings from the Singapore Household Income Survey 2017/18.
 + On loading the webpage, the users should be able to see the series chart (line chart) rendered with already available data. This data is actually randomly generated to show users how the series chart would look like. 
 + Below these cards, users should find a button that links to another form. This form is a table that needs user's past 6 months of expenditure data for 6 different goods and services categories.
-+ Upon saving the data, users should be able to see the series chart update accordingly to plot out the users' data. 
++ Upon saving the data, users should be able to see the series chart update accordingly with users' data. 
 + On hover, the chart is able to show the points which corresponds to the data which the user entered. But because the dates are treated as date object, the past 6 month's data actually corresponds to the date which the user enters the data. For example, if the user enters the data on the 7th of this month, the past month data will be shown on the 7th and similarly for the month before that, even though the x-axis value is in MMM-YY format.
 
 ### Features to be Implemented 
