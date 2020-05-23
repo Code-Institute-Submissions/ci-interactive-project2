@@ -90,7 +90,7 @@ The method of test used for this project is purely manual testing:
     * When any bar is clicked, the doughnut chart will change to show the portions of the national average versus user's average expenditure for the selected goods and services. Users are then able to compare which portion of the doughnut is bigger. The bigger portion indicates higher expenditure.
     * If any bar is clicked, a blue text with the word "reset" will appear above the horizontal bar chart.
     * When the reset link is clicked, both the doughnut and horizontal bar chart are re-rendered.
-+ Below the 4 Key Findings cards, there is a blue "Expenditure Tracking Form" button. 
++ Below the 4 Key Findings cards, there is a blue "Expenditure Tracking Form" button.
     * When there is valid data, clicking the save button will trigger the series chart to plot the corresponding data.
 + Functionality for the series chart:  
     * When hover at specific points on the any line in the series chart, a dot will appear along with 2 dotted lines that projects onto the y and x axis. A tooltip will appear to show the date, time and value of the specific point.
@@ -104,16 +104,20 @@ The method of test used for this project is purely manual testing:
     * Laptop with HiDPI Screen (Width 1440)    
 + Crossbrowser testing is also performed using [Browserling](https://www.browserling.com/). Below are the other browsers tested on using this site :
     * Opera 62
+    * Internet Explorer 11
 + As d3.js and dc.js are charting libraries that are only supported on modern browsers, this website will not be correctly displayed on Internet Explorer.
+5. To smooth out the chart rendering and re-drawing transition, a timeout has been set, for example when users submit the forms, there will be a 1.5s delay before the charts re-draw or render.
 
-### Forms
+### Forms Testing
 + Household Expenditure Form Behaviour:
-    * Clicking on the household expenditure form link either in the sidebar or above the doughnut chart will open up this form in the modal window.
+    * Clicking on the household expenditure form link either in the sidebar or the blue button above the doughnut chart will open up this form in the modal window.
     * When any of the input fields are empty, if the submit button is pressed, no data will be submitted and doughnut chart and horizontal bar chart will not be triggered for a redrawn.
     * A simple form validation is in place for the inputs that only allow users to key in numbers without e, +ve and -ve sign. 
     * The html input tag number type is used to assist in preventing users from keying in non-digit characters.
 + Expenditure Tracking Form Behaviour:
-    * When clicked, a modal with a form-table will pop up. Clicking on the blue "Edit" button allows form editting. 
+    * When the form link in the side bar or the blue "Expenditure Tracking Form" button is clicked, a modal with a table-like form will pop up. 
+    * On the very first webpage load, the Expenditure Tracking Form will be populated with random data generated purposely to plot the series chart. 
+    * Clicking on the blue "Edit" button allows form editting. 
     * When the "Edit" button is clicked again, the table-form is now made non-editable until the edit button is clicked again.
     * Clicking on the red save button with empty input by the user will clear the data in the series chart. All lines will be plotted at 0.
     * Clicking on the red save button will also return the form to non-editable state.
