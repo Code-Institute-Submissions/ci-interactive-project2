@@ -104,7 +104,7 @@ The method of test used for this project is purely manual testing:
     * Laptop with HiDPI Screen (Width 1440)    
 + Crossbrowser testing is also performed using [Browserling](https://www.browserling.com/). Below are the other browsers tested on using this site :
     * Opera 62
-+ As d3.js and dc.js are charting libraries that are only supported on modern browsers, old browsers like Internet Explorer 8 will not be able to show this website correctly.
++ As d3.js and dc.js are charting libraries that are only supported on modern browsers, this website will not be correctly displayed on Internet Explorer.
 
 ### Forms
 + Household Expenditure Form Behaviour:
