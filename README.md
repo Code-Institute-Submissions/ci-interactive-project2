@@ -30,7 +30,7 @@ Prior to starting this website, a layout was roughly drawn to visualize the arra
 
 ### UI and Features
 + The layout is chosen to have a main image at the top along with 4 cards to show top expenditure categories. 
-+ A left sidebar is included in the layout for easier navigation and the users will be given an option to minimize the sidebar to enhance their view of the website.
++ A left sidebar is included in the layout for easier navigation and the users are given an option to minimize the sidebar to enhance their view of the website. This is possible with the sidebar toggle button on the top navbar.
 + The charts and tables are presented on bootstrap cards layout with cards heading. 
 + On mobile, the main image is hidden to enhance the user experience with using the website on small screen devices. 
 + Users are able to hover over the bar chart of household income vs household expenditure, and see the bars change colour to bright yellow. + On hover, they are able to see a tooltip information stating the value of the bars and what they represent (income or expenditure).
@@ -44,7 +44,7 @@ Prior to starting this website, a layout was roughly drawn to visualize the arra
 + On loading the webpage, the users should be able to see the series chart (line chart) rendered with already available data. This data is actually randomly generated to show users how the series chart would look like. 
 + Below these cards, users should find a button that links to another form. This form is a table that needs user's past 6 months of expenditure data for 6 different goods and services categories.
 + Upon saving the data, users should be able to see the series chart update accordingly with users' data. 
-+ On hover, the chart is able to show the points which corresponds to the data which the user entered. But because the dates are treated as date object, the past 6 month's data actually corresponds to the date which the user enters the data. For example, if the user enters the data on the 7th of this month, the past month data will be shown on the 7th and similarly for the month before that, even though the x-axis value is in MMM-YY format.
++ On hover, the chart is able to show the points which corresponds to the data entered. But because the dates are treated as date object, the past 6 month's data actually corresponds to the date which the user enters the data. For example, if the user enters the data on the 7th of this month, the past month data will be shown on the 7th and similarly for the month before that. The x-axis value is in MMM-YY format and will not show the full dates.
 
 ### Features to be Implemented 
 1. One feature that would be great to have in future would be an hourly/daily input for all goods and services expenditure. This input will be totalled by the end of the month to make the data easily available. However, the down side would be to have the users keep keying in this data. As this would be bad for user experience, one way to solve it is to have the user link his bank account to the app but this is only feasible if user's transaction are all cashless transactions.
@@ -121,7 +121,7 @@ The method of test used for this project is purely manual testing:
 
 ### Bugs
 + During the testing stage, there seems to be a bug when changing from large screen to small screen sizes. The website doesn't seem to refresh during resizing and in order to view correctly everytime the screen sizes are change, a refresh is done.
-+ For the Expenditure Tracking form, although users are still only allowed to key in digits, they are still able to cut and paste other "illegal" characters into the forms. This could be fixed by using a more advance client side form validator or writing one. However, due to the limited time available while working on this project, this could be done as a future improvement.
++ For the Expenditure Tracking form, although users are only allowed to key in digits, they are still able to cut and paste other "illegal" characters into the forms. This could be fixed by using a more advance client side form validator or writing one. However, due to the limited time available while working on this project, this could be done as a future improvement.
 
 ## Deployment.
 Currently this interactive website is deployed via GitHub pages. 
