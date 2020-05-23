@@ -153,3 +153,6 @@ To clone the project, type in the command 'git clone https://github.com/Oraclebu
 6. The storage availability snippet is taken from MDN [Using the Web Storage section](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API).
 7. The d3.js charts and table in this project is credited to the Chart Examples on [D3.js](https://www.d3-graph-gallery.com/index.html)
 8. DC.js charts in this project are greatly credited to the Chart Examples on [DC.js](https://dc-js.github.io/dc.js/)
+
+## Disclaimer
+Any content and images used on this website is only for personal development and educational purpose. They are not meant for profit or for income purposes.
